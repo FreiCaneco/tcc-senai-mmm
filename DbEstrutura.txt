@@ -4,4 +4,4 @@ Disciplinas = Nome, Carga horária, Capacitações necessarias
 
 Turma = Nome, Turno
 
-Professor = Nome, Capacitações, Turnos que trabalha, Quantas horas trabalha
+Professor = Nome, Capacitações, Turnos que trabalha, Quantas horas trabalha, 
