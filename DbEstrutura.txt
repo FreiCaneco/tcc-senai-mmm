@@ -1,0 +1,7 @@
+Cursos = Nome, Carga horária, Disciplinas, Turma
+
+Disciplinas = Nome, Carga horária, Capacitações necessarias
+
+Turma = Nome, Turno
+
+Professor = Nome, Capacitações, Turnos que trabalha, Quantas horas trabalha
