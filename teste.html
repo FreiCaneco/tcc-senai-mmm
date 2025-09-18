@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organização Senai</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <select id="capacitacoes">
+        <option value="matematica">Matemática</option>
+        <option value="fisica">Física</option>
+    </select>
+
+    <br><br>
+
+    <input type="text" id="novaCapacitacao" placeholder="Digite uma nova capacitação">
+    <button type="button" id="btnAdicionar">Adicionar</button>
+
+    <script>
+        document.getElementById('btnAdicionar').addEventListener('click', function () {
+            const input = document.getElementById('novaCapacitacao');
+            const select = document.getElementById('capacitacoes');
+            const valor = input.value.trim();
+
+            // evita inserir vazio ou repetido
+            if (!valor) return;
+            const existe = Array.from(select.options).some(opt => opt.text.toLowerCase() === valor.toLowerCase());
+            if (existe) {
+                alert('Essa capacitação já foi adicionada.');
+                input.value = '';
+                return;
+            }
+
+            // cria a nova <option>
+            const option = document.createElement('option');
+            option.value = valor.toLowerCase().replace(/\s+/g, '-'); // ex.: "Banco de Dados" -> "banco-de-dados"
+            option.text = valor;
+            option.selected = true; // já deixa selecionado
+            select.appendChild(option);
+
+            input.value = '';
+            input.focus();
+        });
+    </script>
+
+</body>
+
+</html>
