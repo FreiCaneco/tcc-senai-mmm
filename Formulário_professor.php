@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <!-- Botão para adicionar mais capacitação -->
-                <button id="add-capacitacao" type="button" class="btn btn-secondary" id="adicionarCapacitacao">Adicionar Nova
+                <button type="button" class="btn btn-secondary" id="adicionarCapacitacao">Adicionar Nova
                     Capacitação</button>
             </fieldset>
 
