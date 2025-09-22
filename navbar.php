@@ -3,8 +3,8 @@
   <div class="container-fluid">
     <a class="navbar-brand cor-texto" href="index.php">Organização Senai</a>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="criarProfessor.php">Criar Professor</a></li>
-        <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="sobre.php">Criar Curso</a></li>
+        <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="criar_professor.php">Criar Professor</a></li>
+        <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="criar_curso.php">Criar Curso</a></li>
         <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="sobre.php">Pendências</a></li>
       </ul>
   </div>
