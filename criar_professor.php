@@ -12,32 +12,50 @@
   </head>
   <body>
     <?php include "navbar.php" ?>
-    <h1>Novo Professor</h1>
+
+  <div class="container mt-5">
+    <h1 class="mb-4">Novo Professor</h1>
 
     <form>
       <fieldset>
         <legend>Preencha corretamente</legend>
 
-        <!--Nome e Sobrenome -->
-        <div class="g-3 mb-3">
-          <label for="nome" class="form-label">Nome</label>
+        <!-- Nome e Sobrenome -->
+        <div class="row g-3 mb-4">
           <div class="col">
-            <input type="text" class="form-control" placeholder="Nome" aria-label="Nome">
+             <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" placeholder="Digite o seu Nome" name="nome" required>
+          </div>
+          <div class="col">
+             <label for="sobrenome" class="form-label">Sobrenome</label>
+            <input type="text" class="form-control" placeholder="Digite o seu Sobrenome" name="sobrenome" required>
           </div>
         </div>
 
-        <!--Email -->
+        <!-- E-mail -->
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
-          <input type="email" id="email" class="form-control" placeholder="nome.sobrenome@exemplo">
+          <input type="email" id="email" name="email" class="form-control" placeholder="nome.sobrenome@exemplo.com" required>
+        </div>
+
+        <!-- CPF e Telefone -->
+        <div class="row g-3 mb-4">
+          <div class="col">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" id="cpf" name="CPF" class="form-control" placeholder="Digite o CPF" required>
+          </div>
+          <div class="col">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" required>
+          </div>
         </div>
 
         <!-- Turno e Carga Horária -->
-        <div class="row g-3">
+        <div class="row g-3 mb-3">
           <div class="col">
             <label for="turno" class="form-label">Turno</label>
-            <select id="turno" class="form-select">
-              <option selected>Selecione</option>
+            <select id="turno" name="turno" class="form-select" required>
+              <option selected disabled>Selecione</option>
               <option>Manhã</option>
               <option>Tarde</option>
               <option>Noite</option>
@@ -47,69 +65,57 @@
             </select>
           </div>
 
-          <div class="col">
-            <label for="cargaHoraria" class="form-label">Carga Horária</label>
-            <select id="cargaHoraria" class="form-select">
-              <option selected>Selecione</option>
-              <option>20 Horas</option>
-              <option>40 Horas</option>
-            </select>
-          </div>
-        </div>
-
         <!-- Trabalha aos sábados -->
-        <div class="form-check">
+       <div style="margin-top: 20px;" class="form-check">
           <input class="form-check-input" type="checkbox" value="trabalha" id="trabalha">
           <label class="form-check-label" for="trabalha">Trabalha aos sábados</label>
         </div>
 
-        <!-- Campo dinâmico para adicionar múltiplas capacitações -->
-        <fieldset>
+        <!-- Capacitações Dinâmicas -->
+        <fieldset class="mb-4">
           <legend>Capacitações do Professor</legend>
           <div id="capacitacoes-container">
-            <div class="capacitation-group mb-4 border p-3 position-relative">
+            <div class="capacitation-group mb-3 border p-3 position-relative">
               <div class="mb-3">
-                <label for="cursoNome" class="form-label">Nome do Curso/Capacitação</label>
-                <input type="text" class="form-control" placeholder="Digite o nome do curso">
+                <label class="form-label">Nome do Curso/Capacitação</label>
+                <input type="text" class="form-control" name="capacitações[]" placeholder="Digite o nome do curso" required>
               </div>
               <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 me-2 mt-2 btn-remover">Remover</button>
             </div>
           </div>
-          <button type="button" class="btn btn-secondary" id="adicionarCapacitacao">Adicionar Nova Capacitação</button>
+
+          <button style="margin-left: 100px;" type="button" class="btn btn-secondary" id="adicionarCapacitacao">Adicionar Nova Capacitação</button>
         </fieldset>
 
-        <!-- Botões de Ação -->
+        <!-- Botões de ação -->
         <div class="mt-4">
-          <button id="bt-primary" type="submit" class="btn btn-primary">Salvar</button>
-          <button id="bt-secondary" type="reset" class="btn btn-secondary">Cancelar</button>
+          <button  style="margin-right:320px; Padding: 5px 50px;" type="submit" class="btn btn-primary">Salvar</button>
+          <button style=" Padding: 5px 40px;" type="reset" class="btn btn-secondary">Cancelar</button>
         </div>
       </fieldset>
     </form>
+  </div>
 
-    <!-- Script para adicionar novos campos de capacitação -->
-    <script>
-      document.getElementById('adicionarCapacitacao').addEventListener('click', function () {
-        const newGroup = document.createElement('div');
-        newGroup.classList.add('capacitation-group', 'mb-4', 'border', 'p-3', 'position-relative');
-        newGroup.innerHTML = `
-          <div class="mb-3">
-            <label for="cursoNome" class="form-label">Nome do Curso/Capacitação</label>
-            <input type="text" class="form-control" placeholder="Digite o nome do curso">
-          </div>
-          <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 me-2 mt-2 btn-remover">Remover</button>
-        `;
-        document.getElementById('capacitacoes-container').appendChild(newGroup);
-      });
+  <!-- Script para adicionar/remover campos de capacitação -->
+  <script>
+    document.getElementById('adicionarCapacitacao').addEventListener('click', function () {
+      const newGroup = document.createElement('div');
+      newGroup.classList.add('capacitation-group', 'mb-3', 'border', 'p-3', 'position-relative');
+      newGroup.innerHTML = `
+        <div class="mb-3">
+          <label class="form-label">Nome do Curso/Capacitação</label>
+          <input type="text" class="form-control" name="capacitações[]" placeholder="Digite o nome do curso" required>
+        </div>
+        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 me-2 mt-2 btn-remover">Remover</button>
+      `;
+      document.getElementById('capacitacoes-container').appendChild(newGroup);
+    });
 
-      // Delegação de evento para o botão remover (funciona para todos os botões, inclusive os adicionados dinamicamente)
-      document.getElementById('capacitacoes-container').addEventListener('click', function (event) {
-        if (event.target && event.target.classList.contains('btn-remover')) {
-          const group = event.target.closest('.capacitation-group');
-          if (group) {
-            group.remove();
-          }
-        }
-      });
-    </script>
-  </body>
+    document.getElementById('capacitacoes-container').addEventListener('click', function (event) {
+      if (event.target && event.target.classList.contains('btn-remover')) {
+        event.target.closest('.capacitation-group').remove();
+      }
+    });
+  </script>
+</body>
 </html>
