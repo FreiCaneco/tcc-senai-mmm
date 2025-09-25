@@ -26,8 +26,18 @@
           <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required>
         </div>
 
+        <div class="col mb-4">
+            <label for="turno" class="form-label">Turno</label>
+            <select id="turno" name="turno" class="form-select" required>
+              <option selected disabled>Selecione</option>
+              <option>Manhã</option>
+              <option>Tarde</option>
+              <option>Noite</option>
+            </select>
+          </div>
+
         <!-- TABELA DENTRO DO FORM -->
-        <h2 class="mb-4">Tabela de Horários</h2>
+        <h2 style="text-align: center;" class="mb-4 t">Tabela de Horários</h2>
 
         <table class="table table-bordered table-striped text-center align-middle  mb-5">
           <thead class="table-primary">
@@ -68,7 +78,7 @@
 
       </fieldset>
 
-      <button id="bt-adicionarDisciplinas" type="submit" class="btn btn-primary mb-5" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
+      <button id="bt-adicionarDisciplinas" type="submit" class="btn btn-primary mb-5" style="text-align: center;" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
     </form>
   </div>
 
