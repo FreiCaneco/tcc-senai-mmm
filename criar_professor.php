@@ -75,16 +75,13 @@
         <fieldset class="mb-4">
           <legend>Capacitações do Professor</legend>
           <div id="capacitacoes-container">
-            <div class="capacitation-group mb-3 border p-3 position-relative">
-              <div class="mb-3">
+            <div class="border p-3 position-relative">
+              <div class>
                 <label class="form-label">Nome do Curso/Capacitação</label>
-                <input type="text" class="form-control" name="capacitações[]" placeholder="Digite o nome do curso" required>
               </div>
-              <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 me-2 mt-2 btn-remover">Remover</button>
             </div>
           </div>
 
-          <button style="margin-left: 100px;" type="button" class="btn btn-secondary" id="adicionarCapacitacao">Adicionar Nova Capacitação</button>
         </fieldset>
 
         <!-- Botões de ação -->
@@ -95,27 +92,5 @@
       </fieldset>
     </form>
   </div>
-
-  <!-- Script para adicionar/remover campos de capacitação -->
-  <script>
-    document.getElementById('adicionarCapacitacao').addEventListener('click', function () {
-      const newGroup = document.createElement('div');
-      newGroup.classList.add('capacitation-group', 'mb-3', 'border', 'p-3', 'position-relative');
-      newGroup.innerHTML = `
-        <div class="mb-3">
-          <label class="form-label">Nome do Curso/Capacitação</label>
-          <input type="text" class="form-control" name="capacitações[]" placeholder="Digite o nome do curso" required>
-        </div>
-        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 me-2 mt-2 btn-remover">Remover</button>
-      `;
-      document.getElementById('capacitacoes-container').appendChild(newGroup);
-    });
-
-    document.getElementById('capacitacoes-container').addEventListener('click', function (event) {
-      if (event.target && event.target.classList.contains('btn-remover')) {
-        event.target.closest('.capacitation-group').remove();
-      }
-    });
-  </script>
 </body>
 </html>
