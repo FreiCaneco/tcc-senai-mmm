@@ -46,7 +46,7 @@
             </tr> 
           </thead>
           <tbody>
-            <tr>
+            <tr id="linha-manha">
               <th scope="row">Manhã</th>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
@@ -55,7 +55,7 @@
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
             </tr>
-            <tr>
+            <tr id="linha-tarde">
               <th scope="row">Tarde</th>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
@@ -64,7 +64,7 @@
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
             </tr>
-            <tr>
+            <tr id="linha-noite">
               <th scope="row">Noite</th>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
@@ -78,22 +78,39 @@
 
       </fieldset>
 
-      <button id="bt-adicionarDisciplinas" type="submit" class="btn btn-primary mb-5" style="text-align: center;" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
+      <button id="bt-adicionarDisciplinas" type="submit" class="btn mb-5" style="text-align: center;" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
     </form>
   </div>
 
   <!-- SCRIPT PARA SELEÇÃO DOS DIAS -->
-  <script>
-    const botoesDias = document.querySelectorAll('.dia-btn');
 
-    botoesDias.forEach(botao => {
-      botao.addEventListener('click', () => {
-        botao.classList.toggle('btn-primary');
-        botao.classList.toggle('btn-outline-primary');
-        botao.classList.toggle('selected');
-      });
+
+<script>
+  const botoesDias = document.querySelectorAll('.dia-btn');
+
+  botoesDias.forEach(botao => {
+    botao.addEventListener('click', () => {
+      botao.classList.toggle('btn-primary');
+      botao.classList.toggle('btn-outline-primary');
+      botao.classList.toggle('selected');
     });
-  </script>
+  });
+
+  // NOVO CÓDIGO PARA ESCONDER TURNOS
+  const selectTurno = document.getElementById('turno');
+  const linhaManha = document.getElementById('linha-manha');
+  const linhaTarde = document.getElementById('linha-tarde');
+  const linhaNoite = document.getElementById('linha-noite');
+
+  selectTurno.addEventListener('change', () => {
+    const valorSelecionado = selectTurno.value;
+
+    // Mostra/oculta as linhas com base na seleção
+    linhaManha.style.display = (valorSelecionado === 'Manhã') ? 'table-row' : 'none';
+    linhaTarde.style.display = (valorSelecionado === 'Tarde') ? 'table-row' : 'none';
+    linhaNoite.style.display = (valorSelecionado === 'Noite') ? 'table-row' : 'none';
+  });
+</script>
 </body>
 
 </html>
