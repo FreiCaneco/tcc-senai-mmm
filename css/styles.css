@@ -1,5 +1,5 @@
 .cor-principal {
-  background-color: #1800ad;
+  background-color: white;
 }
 
 .cor-texto {
@@ -19,18 +19,11 @@ h1 {
 }
 
 form {
-  background-color: white;
+  background-color: #FFFFFF;
   padding: 30px;
   border-radius: 20px;
   border: 2px solid #000000a6;
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
   max-width: 700px;
   margin: auto;
-}
-
-legend {
-  font-size: 1.5rem;
-  color: #0059dfff;
-  margin-bottom: 8px;
-  padding: 0 5px;
 }
