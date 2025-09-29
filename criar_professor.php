@@ -98,7 +98,7 @@
             <label class="list-group-item d-flex justify-content-between align-items-center">
               <div class="me-3">
                 <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Didática][ativo]">
-                <span>Didática</span>
+                <span>Automação</span>
               </div>
               <select name="capacitacoes[Didática][nivel]" class="form-select form-select-sm w-auto">
                 <option value="N1">N1</option>
@@ -111,7 +111,7 @@
             <label class="list-group-item d-flex justify-content-between align-items-center">
               <div class="me-3">
                 <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Gestão Escolar][ativo]">
-                <span>Gestão Escolar</span>
+                <span>Desenvolvimento de Sistemas</span>
               </div>
               <select name="capacitacoes[Gestão Escolar][nivel]" class="form-select form-select-sm w-auto">
                 <option value="N1">N1</option>
@@ -120,52 +120,13 @@
               </select>
             </label>
 
-            <!-- Tecnologia Educacional -->
+            <!-- Didática -->
             <label class="list-group-item d-flex justify-content-between align-items-center">
               <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Tecnologia Educacional][ativo]">
-                <span>Tecnologia Educacional</span>
+                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Didática][ativo]">
+                <span>Mecatrônica</span>
               </div>
-              <select name="capacitacoes[Tecnologia Educacional][nivel]" class="form-select form-select-sm w-auto">
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-              </select>
-            </label>
-
-            <!-- Psicopedagogia -->
-            <label class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Psicopedagogia][ativo]">
-                <span>Psicopedagogia</span>
-              </div>
-              <select name="capacitacoes[Psicopedagogia][nivel]" class="form-select form-select-sm w-auto">
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-              </select>
-            </label>
-
-            <!-- Educação Inclusiva -->
-            <label class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Educação Inclusiva][ativo]">
-                <span>Educação Inclusiva</span>
-              </div>
-              <select name="capacitacoes[Educação Inclusiva][nivel]" class="form-select form-select-sm w-auto">
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-              </select>
-            </label>
-
-            <!-- Metodologias Ativas -->
-            <label class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Metodologias Ativas][ativo]">
-                <span>Metodologias Ativas</span>
-              </div>
-              <select name="capacitacoes[Metodologias Ativas][nivel]" class="form-select form-select-sm w-auto">
+              <select name="capacitacoes[Didática][nivel]" class="form-select form-select-sm w-auto">
                 <option value="N1">N1</option>
                 <option value="N2">N2</option>
                 <option value="N3">N3</option>

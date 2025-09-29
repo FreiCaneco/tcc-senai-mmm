@@ -19,7 +19,7 @@
         </div>
 
         <h3 >Estatísticas</h3>
-        <div class="dashboard" class="dashboard-stats  mb-4">
+        <div class="dashboard dashboard-stats  mb-4">
             <div class="stat-item mb-3">
                 <div class="stat-label">Professores</div>
             </div>

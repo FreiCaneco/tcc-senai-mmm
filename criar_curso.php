@@ -78,7 +78,7 @@
 
       </fieldset>
 
-      <button id="bt-adicionarDisciplinas" type="submit" class="btn mb-5" style="text-align: center;" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
+      <button id="bt-adicionarDisciplina" type="submit" class="btn mb-5" style="text-align: center;" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
     </form>
   </div>
 

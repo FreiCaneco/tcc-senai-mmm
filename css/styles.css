@@ -1,5 +1,5 @@
 .cor-principal {
-  background-color: white;
+  background-color: #1800AD
 }
 
 .cor-texto {
@@ -27,3 +27,30 @@ form {
   max-width: 700px;
   margin: auto;
 }
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(100, 60, 255, 100.47);
+}
+
+legend {
+  font-size: 1.5rem;
+  color: #0059df;
+  margin-bottom: 10px;
+}
+
+#bt-adicionarDisciplina {
+  font-size: 1.5rem;
+  color: white;
+  padding: 10px 100px;
+  border-radius: 20px;
+  text-align: center;
+  margin-left: 120px;
+  background-color: #0059df;
+  box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
+}   
