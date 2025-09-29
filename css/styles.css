@@ -45,12 +45,11 @@ legend {
 }
 
 #bt-adicionarDisciplina {
-  font-size: 1.5rem;
+  font-size: 1.0rem;
   color: white;
   padding: 10px 100px;
   border-radius: 20px;
   text-align: center;
-  margin-left: 120px;
   background-color: #0059df;
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
-}   
+}

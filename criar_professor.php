@@ -94,7 +94,6 @@
           <!-- Lista de capacitações -->
           <div id="listaCapacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
 
-            <!-- Didática -->
             <label class="list-group-item d-flex justify-content-between align-items-center">
               <div class="me-3">
                 <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Didática][ativo]">
@@ -107,10 +106,9 @@
               </select>
             </label>
 
-            <!-- Gestão Escolar -->
             <label class="list-group-item d-flex justify-content-between align-items-center">
               <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Gestão Escolar][ativo]">
+                <input type="checkbox" class="form-check-input me-1">
                 <span>Desenvolvimento de Sistemas</span>
               </div>
               <select name="capacitacoes[Gestão Escolar][nivel]" class="form-select form-select-sm w-auto">
@@ -120,13 +118,12 @@
               </select>
             </label>
 
-            <!-- Didática -->
             <label class="list-group-item d-flex justify-content-between align-items-center">
               <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Didática][ativo]">
+                <input type="checkbox" class="form-check-input me-1" >
                 <span>Mecatrônica</span>
               </div>
-              <select name="capacitacoes[Didática][nivel]" class="form-select form-select-sm w-auto">
+              <select class="form-select form-select-sm w-auto">
                 <option value="N1">N1</option>
                 <option value="N2">N2</option>
                 <option value="N3">N3</option>

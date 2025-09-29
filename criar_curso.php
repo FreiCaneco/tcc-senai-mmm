@@ -77,8 +77,10 @@
         </table>
 
       </fieldset>
+      <div style="text-align: center;">
+        <button id="bt-adicionarDisciplina" type="submit" class="btn mb-5" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
+      </div>
 
-      <button id="bt-adicionarDisciplina" type="submit" class="btn mb-5" style="text-align: center;" onclick="window.location.href='criar_disciplina.php'">Adicionar Disciplinas</button>
     </form>
   </div>
 
