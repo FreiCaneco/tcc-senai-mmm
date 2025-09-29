@@ -80,7 +80,6 @@ CREATE TABLE `professor` (
   `email` varchar(45) NOT NULL,
   `trabalha-sabado` tinyint DEFAULT NULL,
   `turno` enum('manha','tarde','noite','manha-tarde','manha-noite','tarde-noite') NOT NULL,
-  `professorcol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_professor`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
