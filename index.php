@@ -26,9 +26,6 @@
             <div class="stat-item mb-3">
                 <div class="stat-label">Cursos</div>
             </div>
-            <div class="stat-item mb-3">
-                <div class="stat-label">Disciplinas</div>
-            </div>
             <div class="stat-item mb-3  ">
                 <div class="stat-label">Pendências</div>
             </div>
@@ -40,7 +37,7 @@
                 <div class="dashboard-card text-center">
                     <h5>Professores</h5>
                     <p class="text-muted">Gerenciar professores do sistema</p>
-                    <a href="professores.php" class="btn btn-primary">Acessar</a>
+                    <a href="professor.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">
@@ -48,13 +45,6 @@
                     <h5>Cursos</h5>
                     <p class="text-muted">Gerenciar cursos e horários</p>
                     <a href="cursos.php" class="btn btn-primary">Acessar</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="dashboard-card text-center">
-                    <h5>Disciplinas</h5>
-                    <p class="text-muted">Gerenciar disciplinas e atribuições</p>
-                    <a href="disciplinas.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">

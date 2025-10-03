@@ -87,8 +87,8 @@
 
           <!-- Barra de busca -->
           <div class="mb-4">
-            <label for="searchCapacitacao" class="form-label">Pesquisar Capacitação</label>
-            <input type="text" id="searchCapacitacao" class="form-control" placeholder="Digite para filtrar...">
+            <label for="searchCapacitacao" class="form-label">Pesquisar Capacitção</label>
+            <input type="text" id="searchCapacitacao" class="form-control" placeholder="Digite o curso...">
           </div>
 
           <!-- Lista de capacitações -->
