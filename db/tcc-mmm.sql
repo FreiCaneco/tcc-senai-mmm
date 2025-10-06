@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 02/10/2025 às 00:37
--- Versão do servidor: 9.1.0
--- Versão do PHP: 8.3.14
+-- Tempo de geração: 06-Out-2025 às 13:47
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `curso`
+-- Estrutura da tabela `curso`
 --
 
 DROP TABLE IF EXISTS `curso`;
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `disciplina`
+-- Estrutura da tabela `disciplina`
 --
 
 DROP TABLE IF EXISTS `disciplina`;
@@ -46,14 +46,23 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
   `id_disciplina` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(55) NOT NULL,
   `duraçao` int NOT NULL,
-  `nivel_necessario` varchar(55) NOT NULL,
+  `nivel_necessario` enum('n1','n2','n3') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_disciplina`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `disciplina`
+--
+
+INSERT INTO `disciplina` (`id_disciplina`, `nome`, `duraçao`, `nivel_necessario`) VALUES
+(1, 'banco-de-dados', 40, 'n2'),
+(2, 'pacote-office', 20, 'n1'),
+(3, 'eletrônica', 40, 'n3');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `disciplina_curso`
+-- Estrutura da tabela `disciplina_curso`
 --
 
 DROP TABLE IF EXISTS `disciplina_curso`;
@@ -67,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `disciplina_curso` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `professor`
+-- Estrutura da tabela `professor`
 --
 
 DROP TABLE IF EXISTS `professor`;
@@ -85,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `professor` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `professor_habilidade`
+-- Estrutura da tabela `professor_habilidade`
 --
 
 DROP TABLE IF EXISTS `professor_habilidade`;
@@ -99,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `professor_habilidade` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `turma`
+-- Estrutura da tabela `turma`
 --
 
 DROP TABLE IF EXISTS `turma`;
@@ -115,25 +124,25 @@ CREATE TABLE IF NOT EXISTS `turma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `disciplina_curso`
+-- Limitadores para a tabela `disciplina_curso`
 --
 ALTER TABLE `disciplina_curso`
   ADD CONSTRAINT `disciplina_curso_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplina` (`id_disciplina`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `disciplina_curso_ibfk_2` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Restrições para tabelas `professor_habilidade`
+-- Limitadores para a tabela `professor_habilidade`
 --
 ALTER TABLE `professor_habilidade`
   ADD CONSTRAINT `professor_habilidade_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplina` (`id_disciplina`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `professor_habilidade_ibfk_2` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id_professor`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Restrições para tabelas `turma`
+-- Limitadores para a tabela `turma`
 --
 ALTER TABLE `turma`
   ADD CONSTRAINT `turma_ibfk_1` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id_professor`) ON DELETE RESTRICT ON UPDATE RESTRICT,
