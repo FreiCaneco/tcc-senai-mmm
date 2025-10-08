@@ -1,6 +1,6 @@
 <?php 
 
-    require_once "C:\wamp64\www\db\connection.php";
+    require_once "./db/connection.php";
 
     class DisciplinaModel {
         private $db;

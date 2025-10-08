@@ -81,7 +81,8 @@
             <label class="form-check-label" for="trabalha">Trabalha aos sábados</label>
           </div>
         </fieldset>
-
+        
+          <!-- Field set responsavel pelas capacitações do professor -->
         <fieldset>
           <legend>Capacitações do Professor</legend>
 
@@ -93,42 +94,29 @@
 
           <!-- Lista de capacitações -->
           <div id="listaCapacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
+            <?php 
+            require_once "./model/disciplina_model.php";
 
-            <label class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" name="capacitacoes[Didática][ativo]">
-                <span>Automação</span>
-              </div>
-              <select name="capacitacoes[Didática][nivel]" class="form-select form-select-sm w-auto">
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-              </select>
-            </label>
+            $disciplinaModel = new DisciplinaModel();
+            $disciplinas = $disciplinaModel->buscarTodas();
 
-            <label class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1">
-                <span>Desenvolvimento de Sistemas</span>
+            foreach ($disciplinas as $disciplina) {
+              $id = $disciplina['id_disciplina'];
+              $disciplinaNivel = ucwords($disciplina['nivel_necessario']);
+              $disciplinaNome = ucfirst(str_replace('-',' ', $disciplina['nome']));
+              
+              echo "
+              <label class='list-group-item d-flex justify-content-between align-items-center'>
+              <div class='me-3'>
+                <input name='disciplinas_selecionadas[$id]' value='$id' type='checkbox' class='form-check-input me-1'>
+                <span>$disciplinaNome</span>
               </div>
-              <select name="capacitacoes[Gestão Escolar][nivel]" class="form-select form-select-sm w-auto">
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-              </select>
-            </label>
-
-            <label class="list-group-item d-flex justify-content-between align-items-center">
-              <div class="me-3">
-                <input type="checkbox" class="form-check-input me-1" >
-                <span>Mecatrônica</span>
-              </div>
-              <select class="form-select form-select-sm w-auto">
-                <option value="N1">N1</option>
-                <option value="N2">N2</option>
-                <option value="N3">N3</option>
-              </select>
-            </label>
+              <label class='w-auto'>
+                $disciplinaNivel
+              </label>
+            </label>";
+            }
+          ?>
           </div>
         </fieldset>
 
