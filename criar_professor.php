@@ -88,12 +88,12 @@
 
           <!-- Barra de busca -->
           <div class="mb-4">
-            <label for="searchCapacitacao" class="form-label">Pesquisar Capacitação</label>
-            <input type="text" id="searchCapacitacao" class="form-control" placeholder="Digite para filtrar...">
+            <label for="search-capacitacao" class="form-label">Pesquisar Capacitação</label>
+            <input type="text" id="search-capacitacao" class="form-control" placeholder="Digite para filtrar...">
           </div>
 
           <!-- Lista de capacitações -->
-          <div id="listaCapacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
+          <div id="lista-capacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
             <?php 
             require_once "./model/disciplina_model.php";
 
@@ -107,11 +107,11 @@
               echo "
               <label class='list-group-item d-flex justify-content-between align-items-center'>
                 <div class='me-3'>
-                  <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' name='disciplinas_selecionadas[$id]' value='$id' id='disciplina_selecionada_$id'>
+                  <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' name='disciplinas_selecionadas[$id]' value='$id' id='checkbox_$id'>
                   <span>$disciplinaNome</span>
                 </div>
-                <div class='w-auto hidden' for='niveis' id='div-select_$id'>
-                  <select class='form-select'>
+                <div class='w-auto hidden' id='div-select_$id'>
+                  <select class='form-select' name='nivel_selecionado[$id]'>
                     <option value='n1'>N1</option>
                     <option value='n2'>N2</option>
                     <option value='n3'>N3</option>
@@ -130,11 +130,10 @@
         </div>
       </form>
     </div>
-  </body>
-  <script>
+
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
       const checkboxes = document.querySelectorAll('.disciplina-checkbox');
-      
       checkboxes.forEach(checkbox => {
         const id = checkbox.id.split('_').pop(); // Pega o número do ID (ex: 1)
         const conteudo = document.getElementById(`div-select_${id}`);
@@ -145,6 +144,30 @@
           conteudo.classList.toggle('hidden', !estaMarcado);
         });
       });
+
+      // Parte Responsavel pela procura de capacitações
+      const searchInput = document.getElementById('search-capacitacao');
+      const listItems = document.querySelectorAll('.list-group-item');
+
+      searchInput.addEventListener('keyup', function() {
+
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        listItems.forEach(item => {
+          const disciplinaNomeElement = item.querySelector('span');
+
+          if(disciplinaNomeElement) {
+            const nome = disciplinaNomeElement.textContent.toLowerCase();
+            
+            if(nome.includes(searchTerm)) {
+              item.setAttribute('style', 'display: flex !important');
+            } else {
+              item.setAttribute('style', 'display: flex !important');
+            }
+          }
+        })
+      })
     })
   </script>
+  </body>
 </html>
