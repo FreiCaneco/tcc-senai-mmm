@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 06-Out-2025 às 13:47
+-- Tempo de geração: 09-Out-2025 às 11:14
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -31,7 +31,8 @@ DROP TABLE IF EXISTS `curso`;
 CREATE TABLE IF NOT EXISTS `curso` (
   `id_curso` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
-  `horario` enum('manha-segunda','manha-terça','manha-quarta','manha-quinta','manha-sexta','manha-sabado','tarde-segunda','tarde-terça','tarde-quarta','tarde-quinta','tarde-sexta','tarde-sabado','noite-segunda','noite-terça','noite-quarta','noite-quinta','noite-sexta','noite-sabado') NOT NULL,
+  `turno` enum('manha','tarde','noite') NOT NULL,
+  `horario` set('segunda','terça','quarta','quinta','sexta','sabado') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_curso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -46,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
   `id_disciplina` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(55) NOT NULL,
   `duraçao` int NOT NULL,
-  `nivel_necessario` enum('n1','n2','n3') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_disciplina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -54,10 +54,10 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
 -- Extraindo dados da tabela `disciplina`
 --
 
-INSERT INTO `disciplina` (`id_disciplina`, `nome`, `duraçao`, `nivel_necessario`) VALUES
-(1, 'banco-de-dados', 40, 'n2'),
-(2, 'pacote-office', 20, 'n1'),
-(3, 'eletrônica', 40, 'n3');
+INSERT INTO `disciplina` (`id_disciplina`, `nome`, `duraçao`) VALUES
+(1, 'banco-de-dados', 40),
+(2, 'pacote-office', 20),
+(3, 'eletrônica', 40);
 
 -- --------------------------------------------------------
 
@@ -85,11 +85,19 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `nome` varchar(255) NOT NULL,
   `cpf` varchar(11) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `email` int NOT NULL,
+  `email` varchar(255) NOT NULL,
   `trabalha-sabado` tinyint(1) NOT NULL,
   `turno` enum('manha','tarde','noite','manha-tarde','manha-noite','tarde-noite') NOT NULL,
   PRIMARY KEY (`id_professor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `professor`
+--
+
+INSERT INTO `professor` (`id_professor`, `nome`, `cpf`, `telefone`, `email`, `trabalha-sabado`, `turno`) VALUES
+(2, 'mateus carvalho', '13522436954', '14332659878', '0', 0, ''),
+(3, 'mateus carvalho', '12344578954', '14332659878', 'mateus@gmail.com', 1, '');
 
 -- --------------------------------------------------------
 
@@ -101,6 +109,7 @@ DROP TABLE IF EXISTS `professor_habilidade`;
 CREATE TABLE IF NOT EXISTS `professor_habilidade` (
   `id_professor` int NOT NULL,
   `id_disciplina` int NOT NULL,
+  `nivel_professor` enum('n1','n2','n3') NOT NULL,
   PRIMARY KEY (`id_professor`,`id_disciplina`),
   KEY `id_disciplina` (`id_disciplina`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
