@@ -106,48 +106,45 @@
               
               echo "
               <label class='list-group-item d-flex justify-content-between align-items-center'>
-              <div class='me-3'>
-                <input class='form-check-input me-1' type='checkbox' name='disciplinas_selecionadas[$id]' value='$id' id='disciplinas_selecionadas_$id'>
-                <span>$disciplinaNome</span>
-              </div>
-              <div class='w-auto' style='display: none;' for='niveis' id='div-select_$id'>
-                <select class='form-select'>
-                  <option value='n1'>N1</option>
-                  <option value='n2'>N2</option>
-                  <option value='n3'>N3</option>
-                </select> 
-              </div>
-            </label>
-            
-            <script>
-              // Usando um evento delegado para todo o contêiner
-              document.addEventListener('change', function(event) {
-                // Verifica se o elemento clicado é um checkbox com a classe 'form-check-input'
-                if (event.target && event.target.classList.contains('form-check-input')) {
-                  const checkbox = event.target;
-                  const id = checkbox.id.replace('disciplinas_selecionadas_', '');  // Obtendo o ID da disciplina
-                  const conteudo = document.getElementById('div-select_' + id);
-
-                  // Alterna a visibilidade do select baseado no estado do checkbox
-                  if (checkbox.checked) {
-                    conteudo.classList.remove('d-none');
-                  } else {
-                    conteudo.classList.add('d-none');
-                  }
-                }
-              });
-            </script>
-            }
+                <div class='me-3'>
+                  <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' name='disciplinas_selecionadas[$id]' value='$id' id='disciplina_selecionada_$id'>
+                  <span>$disciplinaNome</span>
+                </div>
+                <div class='w-auto hidden' for='niveis' id='div-select_$id'>
+                  <select class='form-select'>
+                    <option value='n1'>N1</option>
+                    <option value='n2'>N2</option>
+                    <option value='n3'>N3</option>
+                  </select> 
+                </div>
+              </label>";
+            };
           ?>
           </div>
         </fieldset>
 
         <!-- Botões de ação -->
-        <div class="mt-4">
-          <button type="submit" class="btn btn-primary" style="margin-right: 320px; padding: 5px 50px;">Salvar</button>
-          <button type="reset" class="btn btn-secondary" style="padding: 5px 40px;">Cancelar</button>
+        <div class='mt-4'>
+          <button type='submit' class='btn btn-primary' style='margin-right: 320px; padding: 5px 50px;''>Salvar</button>
+          <button type='reset' class='btn btn-secondary' style='padding: 5px 40px;'>Cancelar</button>
         </div>
       </form>
     </div>
   </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const checkboxes = document.querySelectorAll('.disciplina-checkbox');
+      
+      checkboxes.forEach(checkbox => {
+        const id = checkbox.id.split('_').pop(); // Pega o número do ID (ex: 1)
+        const conteudo = document.getElementById(`div-select_${id}`);
+
+        checkbox.addEventListener('change', function() {
+          const estaMarcado = checkbox.checked;
+          // Lógica: Marcado (true) -> Mostrar (remover hidden)
+          conteudo.classList.toggle('hidden', !estaMarcado);
+        });
+      });
+    })
+  </script>
 </html>
