@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 09-Out-2025 às 13:48
+-- Tempo de geração: 10-Out-2025 às 13:46
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
   `nome` varchar(55) NOT NULL,
   `duraçao` int NOT NULL,
   PRIMARY KEY (`id_disciplina`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `disciplina`
@@ -57,7 +57,9 @@ CREATE TABLE IF NOT EXISTS `disciplina` (
 INSERT INTO `disciplina` (`id_disciplina`, `nome`, `duraçao`) VALUES
 (1, 'banco-de-dados', 40),
 (2, 'pacote-office', 20),
-(3, 'eletrônica', 40);
+(3, 'eletrônica', 40),
+(6, 'redes-de-computadores', 40),
+(7, 'lógica-de-programação', 40);
 
 -- --------------------------------------------------------
 
@@ -86,10 +88,17 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `cpf` varchar(11) NOT NULL,
   `telefone` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `trabalha-sabado` tinyint(1) NOT NULL,
+  `trabalha_sabado` tinyint(1) NOT NULL,
   `turno` enum('manha','tarde','noite','manha-tarde','manha-noite','tarde-noite') NOT NULL,
   PRIMARY KEY (`id_professor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `professor`
+--
+
+INSERT INTO `professor` (`id_professor`, `nome`, `cpf`, `telefone`, `email`, `trabalha_sabado`, `turno`) VALUES
+(3, 'Bruna Gabrielix Giurdanella', '13222812977', '41991028855', 'brunaGiurdanella@gmail.com', 0, 'manha');
 
 -- --------------------------------------------------------
 
@@ -105,6 +114,17 @@ CREATE TABLE IF NOT EXISTS `professor_habilidade` (
   PRIMARY KEY (`id_professor`,`id_disciplina`),
   KEY `id_disciplina` (`id_disciplina`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `professor_habilidade`
+--
+
+INSERT INTO `professor_habilidade` (`id_professor`, `id_disciplina`, `nivel_professor`) VALUES
+(3, 1, 'n2'),
+(3, 2, 'n1'),
+(3, 3, 'n3'),
+(3, 6, 'n2'),
+(3, 7, 'n1');
 
 -- --------------------------------------------------------
 
