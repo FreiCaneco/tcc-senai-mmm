@@ -10,17 +10,17 @@
   $cpf = $_POST['cpf'];
   $telefone = $_POST['telefone'];
   $email = $_POST['email'];
-  $trabalhaSabado = $_POST['trabalha_sabado'];
-  $turno = $_POST['turno']
+  $trabalhaSabado = $_POST['trabalha_sabado'] ?? 0;
+  $turno = $_POST['turno'];
 
   $novoProfessorId = $professorModel->criarProfessor($nomeCompleto,$cpf,$telefone,$email,$trabalhaSabado,$turno);
 
   if($novoProfessorId) {
     $niveisSelecionados = $_POST['nivel_selecionado'] ?? [];
     
-    if(!empty($niveisSelecionados)) {
-      
-    }
+    if(!empty($niveisSelecionados)) { 
+      $professorModel->salvarDisciplinasProfessor($novoProfessorId,$niveisSelecionados);
+    } 
   }
 
 ?>
