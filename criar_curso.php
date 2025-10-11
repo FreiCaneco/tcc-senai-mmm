@@ -37,44 +37,44 @@
           </div>
 
         <!-- TABELA DENTRO DO FORM -->
-        <h2 style="text-align: center;" class="mb-4 t">Tabela de Horários</h2>
+        <h2 id="titulo-tabela" style="text-align: center; display: none;" class="mb-4 t">Tabela de Horários</h2>
 
-        <table class="table table-bordered table-striped text-center align-middle  mb-5">
-          <thead class="table-primary">
-            <tr>
-              <th colspan="7">Turno</th>
-            </tr> 
-          </thead>
-          <tbody>
-            <tr id="linha-manha">
-              <th scope="row">Manhã</th>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
-            </tr>
-            <tr id="linha-tarde">
-              <th scope="row">Tarde</th>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
-            </tr>
-            <tr id="linha-noite">
-              <th scope="row">Noite</th>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
-            </tr>
-          </tbody>
-        </table>
+<table id="tabela-horarios" class="table table-bordered table-striped text-center align-middle mb-5" style="display: none;">
+  <thead class="table-primary">
+    <tr>
+      <th colspan="7">Turno</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr id="linha-manha">
+      <th scope="row">Manhã</th>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
+    </tr>
+    <tr id="linha-tarde">
+      <th scope="row">Tarde</th>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
+    </tr>
+    <tr id="linha-noite">
+      <th scope="row">Noite</th>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
+      <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
+    </tr>
+  </tbody>
+</table>
 
       </fieldset>
       <div style="text-align: center;">
@@ -89,7 +89,6 @@
 
 <script>
   const botoesDias = document.querySelectorAll('.dia-btn');
-
   botoesDias.forEach(botao => {
     botao.addEventListener('click', () => {
       botao.classList.toggle('btn-primary');
@@ -98,19 +97,38 @@
     });
   });
 
-  // NOVO CÓDIGO PARA ESCONDER TURNOS
+  // NOVO CÓDIGO PARA EXIBIR TABELA SOMENTE APÓS SELEÇÃO DO TURNO
   const selectTurno = document.getElementById('turno');
+  const tabelaHorarios = document.getElementById('tabela-horarios');
+  const tituloTabela = document.getElementById('titulo-tabela');
+
   const linhaManha = document.getElementById('linha-manha');
   const linhaTarde = document.getElementById('linha-tarde');
   const linhaNoite = document.getElementById('linha-noite');
 
+  // Esconde todas as linhas inicialmente
+  linhaManha.style.display = 'none';
+  linhaTarde.style.display = 'none';
+  linhaNoite.style.display = 'none';
+
   selectTurno.addEventListener('change', () => {
     const valorSelecionado = selectTurno.value;
 
-    // Mostra/oculta as linhas com base na seleção
-    linhaManha.style.display = (valorSelecionado === 'Manhã') ? 'table-row' : 'none';
-    linhaTarde.style.display = (valorSelecionado === 'Tarde') ? 'table-row' : 'none';
-    linhaNoite.style.display = (valorSelecionado === 'Noite') ? 'table-row' : 'none';
+    // Exibe tabela e título apenas se houver seleção
+    if (valorSelecionado) {
+      tabelaHorarios.style.display = 'table';
+      tituloTabela.style.display = 'block';
+    }
+
+    // Esconde todas as linhas antes de mostrar a correta
+    linhaManha.style.display = 'none';
+    linhaTarde.style.display = 'none';
+    linhaNoite.style.display = 'none';
+
+    // Mostra apenas a linha correspondente
+    if (valorSelecionado === 'Manhã') linhaManha.style.display = 'table-row';
+    if (valorSelecionado === 'Tarde') linhaTarde.style.display = 'table-row';
+    if (valorSelecionado === 'Noite') linhaNoite.style.display = 'table-row';
   });
 </script>
 </body>
