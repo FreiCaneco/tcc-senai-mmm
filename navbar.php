@@ -6,7 +6,7 @@
         <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="index.php">Home</a></li>
         <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="criar_professor.php">Criar Professor</a></li>
         <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="criar_curso.php">Criar Curso</a></li>
-        <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="sobre.php">Pendências</a></li>
+        <li class="nav-item cor-texto"><a class="nav-link cor-texto" href="professores.php">Pendências</a></li>
       </ul>
   </div>
 </nav>

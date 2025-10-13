@@ -27,7 +27,7 @@
 
         <div class="col mb-4">
           <label for="turno" class="form-label">Turno</label>
-          <select id="turno" name="turno" class="form-select" required>
+          <select id="turno-select" name="turno" class="form-select" required>
             <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
@@ -35,34 +35,15 @@
         </div>
 
         <legend id="titulo-tabela" style="display: none;">Tabela de Horários</legend>
-
-        <table id="tabela-horarios" class="table table-bordered table-striped text-center align-middle" style="display: none;">
+        <table id="tabela-horario" class="table table-bordered table-striped text-center align-middle">
           <thead class="table-primary">
             <tr>
               <th colspan="7">Turno</th>
             </tr> 
           </thead>
           <tbody>
-            <tr id="linha-manha">
-              <th scope="row">Manhã</th>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
-            </tr>
-            <tr id="linha-tarde">
-              <th scope="row">Tarde</th>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
-            </tr>
-            <tr id="linha-noite">
-              <th scope="row">Noite</th>
+            <tr id="linha-dia">
+              <th id='titulo-linha' scope="row">Nenhum</th>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
               <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
@@ -74,6 +55,12 @@
         </table>
 
         <legend>Disciplinas do curso</legend>
+
+        <div class="mb-4">
+          <label for="search-capacitacao" class="form-label">Pesquisar Capacitação</label>
+          <input type="text" id="search-capacitacao" class="form-control" placeholder="Digite para filtrar...">
+        </div>
+
         <div id="lista-capacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
           <?php 
             require_once "./model/disciplina_model.php";
@@ -90,13 +77,6 @@
                 <div class='me-3'>
                   <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' id='checkbox_$id'>
                   <span>$disciplinaNome</span>
-                </div>
-                <div class='w-auto hidden' id='div-select_$id'>
-                  <select class='form-select' name='nivel_selecionado[$id]'>
-                    <option value='n1'>N1</option>
-                    <option value='n2'>N2</option>
-                    <option value='n3'>N3</option>
-                  </select> 
                 </div>
               </label>";
             };
@@ -117,50 +97,37 @@
       });
     });
 
-    // CÓDIGO PARA EXIBIR TABELA APÓS SELEÇÃO DO TURNO
-    const selectTurno = document.getElementById('turno');
-    const tabelaHorarios = document.getElementById('tabela-horarios');
-    const tituloTabela = document.getElementById('titulo-tabela');
-
-    const linhaManha = document.getElementById('linha-manha');
-    const linhaTarde = document.getElementById('linha-tarde');
-    const linhaNoite = document.getElementById('linha-noite');
-
-    // Função que encapsula a lógica de exibição/ocultação das linhas e da tabela
-    function atualizarExibicaoTurno() {
-      const valorSelecionado = selectTurno.value;
-
-      // Exibe tabela e título apenas se houver seleção válida
-      if (valorSelecionado && valorSelecionado !== 'Selecione') {
-        tabelaHorarios.style.display = 'table';
-        tituloTabela.style.display = 'block';
-      } else {
-        tabelaHorarios.style.display = 'none';
-        tituloTabela.style.display = 'none';
+    // CÓDIGO PARA MUDAR TITULO LINHA DA TABELA APÓS SELEÇÃO DO TURNO
+      const selectTurno = document.getElementById('turno-select');
+      const tituloLinhaTabela = document.getElementById('titulo-linha');
+      function atualizarTituloLinhaTabela() {
+        const valorSelecionado = selectTurno.value;
+        tituloLinhaTabela.textContent = valorSelecionado;
       }
+      selectTurno.addEventListener('change',atualizarTituloLinhaTabela);
+      atualizarTituloLinhaTabela();
 
-      // Esconde todas as linhas antes de mostrar a correta
-      linhaManha.style.display = 'none';
-      linhaTarde.style.display = 'none';
-      linhaNoite.style.display = 'none';
+    // Parte Responsavel pela procura de capacitações
+      const searchInput = document.getElementById('search-capacitacao');
+      const listItems = document.querySelectorAll('.list-group-item');
 
-      // Mostra apenas a linha correspondente
-      if (valorSelecionado === 'Manhã') linhaManha.style.display = 'table-row';
-      if (valorSelecionado === 'Tarde') linhaTarde.style.display = 'table-row';
-      if (valorSelecionado === 'Noite') linhaNoite.style.display = 'table-row';
-    }
+      searchInput.addEventListener('keyup', function() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
 
-    // Adiciona o listener ao <select>
-    selectTurno.addEventListener('change', atualizarExibicaoTurno);
+        listItems.forEach(item => {
+          const disciplinaNomeElement = item.querySelector('span');
 
-    // NOVO CÓDIGO: Dispara a função no carregamento da página
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Opcional: Garante que "Manhã" esteja selecionado no <select> (se não estiver no HTML)
-      // selectTurno.value = 'Manhã'; // Descomente se não conseguir garantir isso pelo HTML
-      
-      // 2. Chama a função de atualização para exibir o turno inicial
-      atualizarExibicaoTurno(); 
-    });
+          if(disciplinaNomeElement) {
+            const nome = disciplinaNomeElement.textContent.toLowerCase();
+            
+            if(nome.includes(searchTerm)) {
+              item.setAttribute('style', 'display: flex !important');
+            } else {
+              item.setAttribute('style', 'display: none !important');
+            }
+          }
+        })
+      })
 </script>
 </body>
 </html>

@@ -24,7 +24,7 @@
         $database = new Database();
         $conn = $database->getConnection();
 
-        $query = "SELECT id_professor, nome, cpf, telefone, email, `trabalha-sabado` AS trabalha_sabado, turno 
+        $query = "SELECT *
                   FROM professor ORDER BY nome ASC";
         $stmt = $conn->prepare($query);
         $stmt->execute();
