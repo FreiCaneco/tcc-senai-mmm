@@ -20,7 +20,7 @@
       <fieldset>
         <legend>Preencha corretamente</legend>
 
-        <div class="mb-3">
+        <div class="mb-4">
           <label for="nome" class="form-label">Nome</label>
           <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required>
         </div>
@@ -28,16 +28,15 @@
         <div class="col mb-4">
           <label for="turno" class="form-label">Turno</label>
           <select id="turno" name="turno" class="form-select" required>
-            <option selected disabled>Selecione</option>
-            <option>Manhã</option>
+            <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
           </select>
         </div>
 
-        <h2 id="titulo-tabela" style="text-align: center; display: none;" class="mb-4 t">Tabela de Horários</h2>
+        <legend id="titulo-tabela" style="display: none;">Tabela de Horários</legend>
 
-        <table id="tabela-horarios" class="table table-bordered table-striped text-center align-middle mb-5" style="display: none;">
+        <table id="tabela-horarios" class="table table-bordered table-striped text-center align-middle" style="display: none;">
           <thead class="table-primary">
             <tr>
               <th colspan="7">Turno</th>
@@ -74,6 +73,35 @@
           </tbody>
         </table>
 
+        <legend>Disciplinas do curso</legend>
+        <div id="lista-capacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
+          <?php 
+            require_once "./model/disciplina_model.php";
+
+            $disciplinaModel = new DisciplinaModel();
+            $disciplinas = $disciplinaModel->buscarTodas();
+
+            foreach ($disciplinas as $disciplina) {
+              $id = $disciplina['id_disciplina'];
+              $disciplinaNome = ucfirst(str_replace('-',' ', $disciplina['nome']));
+              
+              echo "
+              <label class='list-group-item d-flex justify-content-between align-items-center'>
+                <div class='me-3'>
+                  <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' id='checkbox_$id'>
+                  <span>$disciplinaNome</span>
+                </div>
+                <div class='w-auto hidden' id='div-select_$id'>
+                  <select class='form-select' name='nivel_selecionado[$id]'>
+                    <option value='n1'>N1</option>
+                    <option value='n2'>N2</option>
+                    <option value='n3'>N3</option>
+                  </select> 
+                </div>
+              </label>";
+            };
+          ?>
+        </div>
       </fieldset>
     </form>
   </div>
@@ -89,7 +117,7 @@
       });
     });
 
-    // NOVO CÓDIGO PARA EXIBIR TABELA SOMENTE APÓS SELEÇÃO DO TURNO
+    // CÓDIGO PARA EXIBIR TABELA APÓS SELEÇÃO DO TURNO
     const selectTurno = document.getElementById('turno');
     const tabelaHorarios = document.getElementById('tabela-horarios');
     const tituloTabela = document.getElementById('titulo-tabela');
@@ -98,17 +126,11 @@
     const linhaTarde = document.getElementById('linha-tarde');
     const linhaNoite = document.getElementById('linha-noite');
 
-    // Garante que as linhas estão escondidas no carregamento (além do CSS inline)
-    document.addEventListener('DOMContentLoaded', () => {
-      linhaManha.style.display = 'none';
-      linhaTarde.style.display = 'none';
-      linhaNoite.style.display = 'none';
-    });
-
-    selectTurno.addEventListener('change', () => {
+    // Função que encapsula a lógica de exibição/ocultação das linhas e da tabela
+    function atualizarExibicaoTurno() {
       const valorSelecionado = selectTurno.value;
 
-      // Exibe tabela e título apenas se houver seleção
+      // Exibe tabela e título apenas se houver seleção válida
       if (valorSelecionado && valorSelecionado !== 'Selecione') {
         tabelaHorarios.style.display = 'table';
         tituloTabela.style.display = 'block';
@@ -126,7 +148,19 @@
       if (valorSelecionado === 'Manhã') linhaManha.style.display = 'table-row';
       if (valorSelecionado === 'Tarde') linhaTarde.style.display = 'table-row';
       if (valorSelecionado === 'Noite') linhaNoite.style.display = 'table-row';
+    }
+
+    // Adiciona o listener ao <select>
+    selectTurno.addEventListener('change', atualizarExibicaoTurno);
+
+    // NOVO CÓDIGO: Dispara a função no carregamento da página
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Opcional: Garante que "Manhã" esteja selecionado no <select> (se não estiver no HTML)
+      // selectTurno.value = 'Manhã'; // Descomente se não conseguir garantir isso pelo HTML
+      
+      // 2. Chama a função de atualização para exibir o turno inicial
+      atualizarExibicaoTurno(); 
     });
-  </script>
+</script>
 </body>
 </html>
