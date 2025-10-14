@@ -82,6 +82,15 @@
             };
           ?>
         </div>
+
+        <div class='mt-4'>
+          <button type='submit' class='btn btn-primary'>
+            Salvar
+          </button>
+          <button type='reset'class='btn btn-secondary'>
+            Cancelar
+          </button>
+        </div>
       </fieldset>
     </form>
   </div>
