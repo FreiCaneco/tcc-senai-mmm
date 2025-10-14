@@ -156,19 +156,11 @@
           </div>
         </fieldset>
 
-        <div class='mt-4'>
-          <button 
-            type='submit' 
-            class='btn btn-primary' 
-            style='margin-right: 320px; padding: 5px 50px;'
-          >
+        <div class='mt-4 d-flex justify-content-center gap-2'>
+          <button type='submit' class='btn btn-primary'>
             Salvar
           </button>
-          <button 
-            type='reset' 
-            class='btn btn-secondary' 
-            style='padding: 5px 40px;'
-          >
+          <button type='reset' class='btn btn-secondary'>
             Cancelar
           </button>
         </div>

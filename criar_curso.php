@@ -44,12 +44,12 @@
           <tbody>
             <tr id="linha-dia">
               <th id='titulo-linha' scope="row">Nenhum</th>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
+              <td><button type="button" value="segunda" name="horarios[0]" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
+              <td><button type="button" value="terça" name="horarios[1]" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
+              <td><button type="button" value="quarta" name="horarios[2]" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
+              <td><button type="button" value="quinta" name="horarios[3]" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
+              <td><button type="button" value="sexta" name="horarios[4]" lass="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
+              <td><button type="button" value="sábado" name="horarios[]" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
             </tr>
           </tbody>
         </table>
@@ -83,11 +83,11 @@
           ?>
         </div>
 
-        <div class='mt-4'>
-          <button type='submit' class='btn btn-primary'>
+        <div class='mt-4 d-flex justify-content-center gap-2'>
+          <button type='submit' class='btn btn-primary '>
             Salvar
           </button>
-          <button type='reset'class='btn btn-secondary'>
+          <button type='reset' class='btn btn-secondary'>
             Cancelar
           </button>
         </div>
