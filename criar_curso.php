@@ -44,12 +44,30 @@
           <tbody>
             <tr id="linha-dia">
               <th id='titulo-linha' scope="row">Nenhum</th>
-              <td><button type="button" value="segunda" name="horarios[0]" class="btn btn-outline-primary w-100 dia-btn">Segunda</button></td>
-              <td><button type="button" value="terça" name="horarios[1]" class="btn btn-outline-primary w-100 dia-btn">Terça</button></td>
-              <td><button type="button" value="quarta" name="horarios[2]" class="btn btn-outline-primary w-100 dia-btn">Quarta</button></td>
-              <td><button type="button" value="quinta" name="horarios[3]" class="btn btn-outline-primary w-100 dia-btn">Quinta</button></td>
-              <td><button type="button" value="sexta" name="horarios[4]" lass="btn btn-outline-primary w-100 dia-btn">Sexta</button></td>
-              <td><button type="button" value="sábado" name="horarios[]" class="btn btn-outline-primary w-100 dia-btn">Sábado</button></td>
+              <td>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button>
+                <input type='hidden' name='horarios[]' data-input-dia='segunda'>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button>
+                <input type='hidden' name='horarios[]' data-input-dia='terça'>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button>
+                <input type='hidden' name='horarios[]' data-input-dia='quarta'>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button>
+                <input type='hidden' name='horarios[]' data-input-dia='quinta'>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button>
+                <input type='hidden' name='horarios[]' data-input-dia='sexta'>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button>
+                <input type='hidden' name='horarios[]' data-input-dia='sábado'>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -96,13 +114,24 @@
   </div>
 
   <script>
+
     // Seleção dos botões para o efeito toggle
     const botoesDias = document.querySelectorAll('.dia-btn');
     botoesDias.forEach(botao => {
+      const inputOculto = botao.nextElementSibling;
+
       botao.addEventListener('click', () => {
         botao.classList.toggle('btn-primary');
         botao.classList.toggle('btn-outline-primary');
         botao.classList.toggle('selected'); // Adiciona uma classe 'selected' para controle
+
+        const dia = botao.value;
+
+        if(botao.classList.contains('selected')) {
+          inputOculto.value = dia
+        } else {
+          inputOculto.value = '';
+        }
       });
     });
 
