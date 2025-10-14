@@ -16,7 +16,7 @@
   <div class="container mt-4">
     <h1>Novo Curso</h1>
 
-    <form>
+    <form method="POST" action='./controller/c_criar_curso.php'>
       <fieldset>
         <legend>Preencha corretamente</legend>
 
@@ -45,27 +45,27 @@
             <tr id="linha-dia">
               <th id='titulo-linha' scope="row">Nenhum</th>
               <td>
-                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Segunda</button>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn" value='segunda'>Segunda</button>
                 <input type='hidden' name='horarios[]' data-input-dia='segunda'>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Terça</button>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn" value='terça'>Terça</button>
                 <input type='hidden' name='horarios[]' data-input-dia='terça'>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Quarta</button>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn" value='quarta'>Quarta</button>
                 <input type='hidden' name='horarios[]' data-input-dia='quarta'>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Quinta</button>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn" value='quinta'>Quinta</button>
                 <input type='hidden' name='horarios[]' data-input-dia='quinta'>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Sexta</button>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn" value='sexta'>Sexta</button>
                 <input type='hidden' name='horarios[]' data-input-dia='sexta'>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-primary w-100 dia-btn">Sábado</button>
+                <button type="button" class="btn btn-outline-primary w-100 dia-btn" value='sábado'>Sábado</button>
                 <input type='hidden' name='horarios[]' data-input-dia='sábado'>
               </td>
             </tr>
@@ -129,8 +129,10 @@
 
         if(botao.classList.contains('selected')) {
           inputOculto.value = dia
+          inputOculto.disabled = false
         } else {
-          inputOculto.value = '';
+          inputOculto.value = ''
+          inputOculto.disabled = true
         }
       });
     });

@@ -22,7 +22,7 @@
     <div class="container mt-4">
       <h1 class="mb-4">Novo Professor</h1>
 
-      <form method='POST' action='./controller/salvar_professor.php'>
+      <form method='POST' action='./controller/c_criar_professor.php'>
         <fieldset>
           <legend>Preencha corretamente</legend>
 

@@ -1,7 +1,6 @@
 <?php 
 
-  require_once '../db/connection.php';
-
+  require_once './db/connection.php';
 
   class ProfessorModel {
     private $db;
