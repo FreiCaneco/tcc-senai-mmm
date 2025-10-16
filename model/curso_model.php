@@ -1,25 +1,35 @@
-<?php 
-require_once '../db/connection.php';
+<?php
+require_once 'db/connection.php';
 
 class CursoModel {
-  private $db;
-  public function __construct() {
-      $database = new Database();
-      $this->db = $database->getConnection();
-  }
+    private $conn;
 
-  public function criarCurso($nome, $horario, $turno) {
-    $sql = "INSERT INTO curso (nome, horario, turno) VALUES (?, ?, ?)";
+    public function __construct() {
+        $db = new Database();
+        $this->conn = $db->getConnection();
+    }
 
-    try {
-      $stmt = $this->db->prepare($sql);
-      $stmt->execute([$nome, $horario, $turno]);
+    public function criarCurso($nome, $turno, $horariosArray) {
+        // Converte array ['segunda','quarta'] → 'segunda,quarta'
+        $horariosStr = implode(',', $horariosArray);
 
-    } catch (PDOException $e) {
-        echo "Um erro surgiu ao inserir um curso: " . $e->getMessage();
+        $sql = "INSERT INTO curso (nome, horario, turno) VALUES (:nome, :horario, :turno)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':horario', $horariosStr);
+        $stmt->bindParam(':turno', $turno);
+
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
         return false;
     }
-  }
-}
 
-?> 
+    public function buscarPorId($id) {
+        $sql = "SELECT * FROM curso WHERE id_curso = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}
