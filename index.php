@@ -18,44 +18,43 @@
         </div>
       </div>
 
-      <h3>Estatísticas</h3>
-      <div class="dashboard dashboard-stats  mb-4">
-        <div class="stat-item mb-3">
-          <div class="stat-label">Professores</div>
-        </div>
-        <div class="stat-item mb-3">
-          <div class="stat-label">Cursos</div>
+        <h3 >Estatísticas</h3>
+        <div class="dashboard dashboard-stats  mb-4">
+            <div class="stat-item mb-3">
+                <div class="stat-label">Professores</div>
+            </div>
+            <div class="stat-item mb-3">
+                <div class="stat-label">Cursos</div>
+            </div>
+            <div class="stat-item mb-3  ">
+                <div class="stat-label">Pendências</div>
+            </div>
         </div>
 
-        <div class="stat-item mb-3  ">
-          <div class="stat-label">Pendências</div>
+        <h3 class="mt-4">Ações Rápidas</h3>
+        <div class="row mt-4 dashboard">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="dashboard-card text-center">
+                    <h5>Professores</h5>
+                    <p class="text-muted">Gerenciar professores do sistema</p>
+                    <a href="professor.php" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="dashboard-card text-center">
+                    <h5>Cursos</h5>
+                    <p class="text-muted">Gerenciar cursos e horários</p>
+                    <a href="cursos.php" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="dashboard-card text-center">
+                    <h5>Pendências</h5>
+                    <p class="text-muted">Visualizar tarefas pendentes</p>
+                    <a href="pendencias.php" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <h3 class="mt-4">Ações Rápidas</h3>
-      <div class="row mt-4 dashboard">
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="dashboard-card text-center">
-            <h5>Professores</h5>
-            <p class="text-muted">Gerenciar professores do sistema</p>
-            <a href="professores.php" class="btn btn-primary">Acessar</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="dashboard-card text-center">
-            <h5>Cursos</h5>
-            <p class="text-muted">Gerenciar cursos e horários</p>
-            <a href="cursos.php" class="btn btn-primary">Acessar</a>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div class="dashboard-card text-center">
-            <h5>Pendências</h5>
-            <p class="text-muted">Visualizar tarefas pendentes</p>
-            <a href="pendencias.php" class="btn btn-primary">Acessar</a>
-          </div>
-        </div>
-      </div>
 
 
       <div class="row">

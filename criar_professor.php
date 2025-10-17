@@ -14,6 +14,8 @@
       crossorigin="anonymous">
     </script>
 
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
   <body>
@@ -22,6 +24,17 @@
     <div class="container mt-4">
       <h1 class="mb-4">Novo Professor</h1>
 
+      <?php
+      if (isset($_GET['status'])) {
+          if ($_GET['status'] == 'success') {
+              echo '<div class="alert alert-success" role="alert">Formulário feito com sucesso</div>';
+          } elseif ($_GET['status'] == 'error') {
+              echo '<div class="alert alert-danger" role="alert">Erro no formulário</div>';
+          }
+      }
+      ?>
+
+      <form action="salvar_professor.php" method="POST">
       <form method='POST' action='./controller/c_criar_professor.php'>
         <fieldset>
           <legend>Preencha corretamente</legend>
@@ -29,60 +42,27 @@
           <div class="row mb-4">
             <div class="col">
               <label for="nome" class="form-label">Nome</label>
-              <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Digite o seu Nome" 
-                name="nome" 
-                required
-              >
+              <input type="text" class="form-control" placeholder="Digite o seu Nome" name="nome" id="nome" required />
             </div>
             <div class="col">
               <label for="sobrenome" class="form-label">Sobrenome</label>
-              <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Digite o seu Sobrenome" 
-                name="sobrenome" 
-                required
-              >
+              <input type="text" class="form-control" placeholder="Digite o seu Sobrenome" name="sobrenome" id="sobrenome" required />
             </div>
           </div>
 
           <div class="mb-4">
             <label for="email" class="form-label">E-mail</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              class="form-control" 
-              placeholder="nome.sobrenome@exemplo.com" 
-              required
-            >
+            <input type="email" id="email" name="email" class="form-control" placeholder="nome.sobrenome@exemplo.com" required />
           </div>
 
           <div class="row mb-4">
             <div class="col">
               <label for="cpf" class="form-label">CPF</label>
-              <input 
-                type="text" 
-                id="cpf" 
-                name="cpf" 
-                class="form-control" 
-                placeholder="Digite o CPF" 
-                required
-              >
+              <input type="text" id="cpf" name="CPF" class="form-control" placeholder="Digite o CPF" required />
             </div>
             <div class="col">
               <label for="telefone" class="form-label">Telefone</label>
-              <input 
-                type="text" 
-                id="telefone" 
-                name="telefone" 
-                class="form-control" 
-                placeholder="Digite o telefone" 
-                required
-              >
+              <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Digite o telefone" required />
             </div>
           </div>
 
@@ -102,6 +82,7 @@
           </div>
 
           <div class="form-check mt-3 mb-4">
+            <input class="form-check-input" type="checkbox" value="1" id="trabalha" name="trabalha" />
             <input 
               class="form-check-input" 
               type="checkbox" 
@@ -155,14 +136,11 @@
             ?>
           </div>
         </fieldset>
-
-        <div class='mt-4 d-flex justify-content-center gap-2'>
-          <button type='submit' class='btn btn-primary'>
-            Salvar
-          </button>
-          <button type='reset' class='btn btn-secondary'>
-            Cancelar
-          </button>
+        
+        <!-- Botões de ação -->
+        <div class="mt-4">
+          <button type="submit" class="btn btn-primary" style="margin-right: 320px; padding: 5px 50px;">Salvar</button>
+          <button type="reset" class="btn btn-secondary" style="padding: 5px 40px;">Cancelar</button>
         </div>
       </form>
     </div>
