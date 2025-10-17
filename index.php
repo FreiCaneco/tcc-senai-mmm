@@ -26,6 +26,7 @@
             <div class="stat-item mb-3">
                 <div class="stat-label">Cursos</div>
             </div>
+         
             <div class="stat-item mb-3  ">
                 <div class="stat-label">Pendências</div>
             </div>
