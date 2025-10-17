@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <?php include 'navbar.php'; ?>
+    <?php include './view/navbar.php'; ?>
 
     <div class="container mt-4">
       <div class="row">
@@ -37,21 +37,21 @@
                 <div class="dashboard-card text-center">
                     <h5>Professores</h5>
                     <p class="text-muted">Gerenciar professores do sistema</p>
-                    <a href="professores.php" class="btn btn-primary">Acessar</a>
+                    <a href="./view/professores.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">
                 <div class="dashboard-card text-center">
                     <h5>Cursos</h5>
                     <p class="text-muted">Gerenciar cursos e horários</p>
-                    <a href="cursos.php" class="btn btn-primary">Acessar</a>
+                    <a href="./view/cursos.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">
                 <div class="dashboard-card text-center">
                     <h5>Pendências</h5>
                     <p class="text-muted">Visualizar tarefas pendentes</p>
-                    <a href="pendencias.php" class="btn btn-primary">Acessar</a>
+                    <a href="./view/pendencias.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
         </div>
@@ -62,8 +62,8 @@
           <div class="dashboard-card mb-5">
             <h5 class="mb-3" style="margin-left: 590px;">Ações Rápidas</h5>
             <div style="margin-left: 450px;" class="d-flex flex-wrap gap-2">
-              <a href="criar_professor.php" style="padding: 5px 50px;" class="btn btn-outline-primary">Novo Professor</a>
-              <a href="criar_curso.php" style="padding: 5px 60px;" class="btn btn-outline-primary">Novo Curso</a>
+              <a href="./view/criar_professor.php" style="padding: 5px 50px;" class="btn btn-outline-primary">Novo Professor</a>
+              <a href="./view/criar_curso.php" style="padding: 5px 60px;" class="btn btn-outline-primary">Novo Curso</a>
             </div>
           </div>
         </div>

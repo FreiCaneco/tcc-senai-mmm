@@ -12,11 +12,11 @@ try {
   $cursoId = $curso_model->criarCurso($nome, $horariosString, $turno);
 
   if ($cursoId) {
-    header("Location: ../cursos.php?id=$cursoId&status=success");
+    header("Location: ../view/cursos.php?id=$cursoId&status=success");
   } 
   exit();
   } catch (Exception $e) {
-      header("Location: ../cursos.php?status=error");
+      header("Location: ../view/cursos.php?status=error");
       exit();
   }
 ?>

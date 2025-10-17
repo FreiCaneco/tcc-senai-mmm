@@ -23,13 +23,13 @@ try {
         }
 
         //  Redireciona com status de sucesso
-        header("Location: ../professores.php?status=success");
+        header("Location: ../view/professores.php?status=success");
         exit();
     }
 
 } catch (Exception $e) {
     // Redireciona com status de erro se ocorrer exceção
-    header("Location: ../professores.php?status=error");
+    header("Location: ../view/professores.php?status=error");
     exit();
 }
 ?>

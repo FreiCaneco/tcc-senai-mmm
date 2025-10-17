@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Cadastro</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
   <body>
 
-    <?php include "navbar.php" ?>
+    <?php include "../view/navbar.php" ?>
 
     <div class="container mt-4">
       <h1>Novo Curso</h1>
 
-      <form method="POST" action='./controller/c_criar_curso.php'>
+      <form method="POST" action='../controller/c_criar_curso.php'>
         <fieldset>
           <legend>Preencha corretamente</legend>
 
@@ -81,7 +81,7 @@
 
           <div id="lista-capacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
             <?php
-              require_once "./model/disciplina_model.php";
+              require_once "../model/disciplina_model.php";
 
               $disciplinaModel = new DisciplinaModel();
               $disciplinas = $disciplinaModel->buscarTodas();
