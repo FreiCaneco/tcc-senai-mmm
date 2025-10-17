@@ -1,6 +1,6 @@
 <?php 
 
-  require_once '../db/connection.php';
+  require_once __DIR__ . '/../db/connection.php';
 
   class ProfessorModel {
     private $db;
@@ -36,7 +36,6 @@
       }
     }
 
-
     // Era pra estar em outro model, "disciplinasProfessor" ou algo assim
     public function salvarDisciplinasProfessor($professorId, array $disciplinaIDs_niveis,) {
       $sql = "INSERT INTO professor_habilidade (id_disciplina, id_professor, nivel_professor) VALUES (?,?,?)";
@@ -51,5 +50,18 @@
         ]);
       }
     }
+
+  public function selectTodosProfessores() {
+    $sql = "SELECT * FROM professor ORDER BY nome ASC";
+    try {
+      $stmt = $this->db->prepare($sql);
+      $stmt->execute();
+      return $stmt->fetchAll();
+      
+    } catch (PDOException $e) {
+        error_log("Erro ao buscar professores: " . $e->getMessage());
+        return null;
+    } 
   }
+}
 ?>

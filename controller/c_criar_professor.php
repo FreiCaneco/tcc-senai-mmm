@@ -25,10 +25,6 @@ try {
         //  Redireciona com status de sucesso
         header("Location: ../professores.php?status=success");
         exit();
-    } else {
-        // Redireciona com status de erro
-        header("Location: ../professores.php?status=error");
-        exit();
     }
 
 } catch (Exception $e) {

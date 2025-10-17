@@ -1,35 +1,37 @@
 <?php
-require_once 'db/connection.php';
+require_once __DIR__ . '/../db/connection.php';
 
 class CursoModel {
-    private $conn;
+  private $conn;
 
-    public function __construct() {
-        $db = new Database();
-        $this->conn = $db->getConnection();
+  public function __construct() {
+    $db = new Database();
+    $this->conn = $db->getConnection();
+  }
+
+  public function criarCurso($nome, $horario, $turno) {
+    $sql = "INSERT INTO curso (nome, horario, turno) VALUES (?, ?, ?)";
+
+    try {
+      $stmt = $this->conn->prepare($sql); 
+      $stmt->execute([$nome, $horario, $turno]);
+      return true; // Adicionado retorno de sucesso
+    } catch (PDOException $e) {
+      error_log("Um erro surgiu ao inserir um curso: " . $e->getMessage()); // Usar error_log é melhor que echo
+      return false;
     }
+  }
 
-    public function criarCurso($nome, $turno, $horariosArray) {
-        // Converte array ['segunda','quarta'] → 'segunda,quarta'
-        $horariosStr = implode(',', $horariosArray);
+  public function selectTodosCursos() {
+    $sql = "SELECT * FROM curso ORDER BY nome ASC";
+    try {
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      return $stmt->fetchAll();
 
-        $sql = "INSERT INTO curso (nome, horario, turno) VALUES (:nome, :horario, :turno)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':horario', $horariosStr);
-        $stmt->bindParam(':turno', $turno);
-
-        if ($stmt->execute()) {
-            return $this->conn->lastInsertId();
-        }
-        return false;
+    } catch (PDOException $e) {
+      error_log("Erro ao buscar professores: " . $e->getMessage());
+      return null;
     }
-
-    public function buscarPorId($id) {
-        $sql = "SELECT * FROM curso WHERE id_curso = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+  }
 }
