@@ -37,7 +37,7 @@
                 <div class="dashboard-card text-center">
                     <h5>Professores</h5>
                     <p class="text-muted">Gerenciar professores do sistema</p>
-                    <a href="professor.php" class="btn btn-primary">Acessar</a>
+                    <a href="professores.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">

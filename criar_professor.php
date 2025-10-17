@@ -34,7 +34,7 @@
       }
       ?>
 
-      <form action="salvar_professor.php" method="POST">
+      
       <form method='POST' action='./controller/c_criar_professor.php'>
         <fieldset>
           <legend>Preencha corretamente</legend>
@@ -58,7 +58,7 @@
           <div class="row mb-4">
             <div class="col">
               <label for="cpf" class="form-label">CPF</label>
-              <input type="text" id="cpf" name="CPF" class="form-control" placeholder="Digite o CPF" required />
+              <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Digite o CPF" required />
             </div>
             <div class="col">
               <label for="telefone" class="form-label">Telefone</label>
