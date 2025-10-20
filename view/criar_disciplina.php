@@ -31,8 +31,8 @@
         <!--Formação necessária-->
         <div class="row g-3 mb-4">
           <div class="col">
-            <label for="formacao" class="form-label">Formação Necessária</label>
-            <input type="text" id="formacao" name="formacao" class="form-control" placeholder="Digite a formação necessária" required>
+            <label for="duracao" class="form-label">Carga Horária</label>
+            <input type="text" id="duracao" name="duracao" class="form-control" placeholder="Digite a Carga Horária" required>
           </div>
         </div>
 
