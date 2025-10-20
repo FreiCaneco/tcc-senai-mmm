@@ -37,19 +37,34 @@
         </div>
 
         <!-- Professores -->
-        <div class="row g-3 mb-3">
-          <div class="col">
-            <label for="professores" class="form-label">Professores</label>
-            <select id="professores" name="professores" class="form-select" required>
-              <option selected disabled>Selecione</option>
-              <option>Professor 1</option>
-              <option>Professor 2</option>
-              <option>Professor 3</option>
-              <option>Professor 4</option>
-              <option>Professor 5</option>
-              <option>Professor 6</option>
-            </select>
-          </div>
+        <div id="lista-capacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
+          <?php 
+            require_once "../model/disciplina_model.php";
+
+            $disciplinaModel = new DisciplinaModel();
+            $disciplinas = $disciplinaModel->buscarTodas();
+
+            foreach ($disciplinas as $disciplina) {
+              $id = $disciplina['id_disciplina'];
+              $disciplinaNome = ucfirst(str_replace('-',' ', $disciplina['nome']));
+              
+              echo "
+              <label class='list-group-item d-flex justify-content-between align-items-center'>
+                <div class='me-3'>
+                  <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' id='checkbox_$id'>
+                  <span>$disciplinaNome</span>
+                </div>
+                <div class='w-auto hidden' id='div-select_$id'>
+                  <select class='form-select' name='nivel_selecionado[$id]'>
+                    <option value='n1'>N1</option>
+                    <option value='n2'>N2</option>
+                    <option value='n3'>N3</option>
+                  </select> 
+                </div>
+              </label>";
+            };
+          ?>
+        </div>
         </fieldset>
 
         <!-- Botões de ação -->
