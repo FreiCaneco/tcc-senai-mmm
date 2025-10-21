@@ -3,7 +3,23 @@
 }
 
 .container {
-  
+  padding: 24px;
+}
+
+#calendar {
+  max-width: 900px;
+  /* Limita a largura em telas grandes */
+  margin: 40px auto;
+  /* Centraliza e adiciona margem superior/inferior */
+  padding: 20px;
+  background-color: #ffffff;
+  /* Fundo branco ou outra cor de sua preferência */
+  border-radius: 8px;
+  /* Cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  font-family: 'Quicksand', sans-serif;
+  /* Usa a fonte que você linkou */
 }
 
 .cor-texto {
@@ -106,5 +122,3 @@ legend {
 .custom-table tbody tr:last-child td {
   border-bottom: none;
 }
-
-

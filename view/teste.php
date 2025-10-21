@@ -15,7 +15,17 @@
 <body>
     <?php include "../view/navbar.php" ?>
 
-    <div id='calendar'></div>
+    
+    <div id="container">
+      <div id='parteDaEsquerda'>
+        <div>Curso</div>
+        <div>Professor</div>
+        <div>Turno</div>
+        
+      </div>
+      <div id='calendar'></div>
+    </div>
+    
 </body>
 <script>
 
