@@ -6,25 +6,134 @@
   padding: 24px;
 }
 
-#calendar {
-  max-width: 900px;
-  /* Limita a largura em telas grandes */
-  margin: 40px auto;
-  /* Centraliza e adiciona margem superior/inferior */
-  padding: 20px;
-  background-color: #ffffff;
-  /* Fundo branco ou outra cor de sua preferência */
-  border-radius: 8px;
-  /* Cantos arredondados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Sombra suave */
-  font-family: 'Quicksand', sans-serif;
-  /* Usa a fonte que você linkou */
-}
-
 .cor-texto {
   color: white;
 }
+
+/* Adicionar: Layout principal em linha (flex) */
+#container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo da parte esquerda como menu lateral */
+#parteDaEsquerda {
+  background-color: #1800ad; /* azul marinho, usa .cor-principal */
+  color: white;
+  padding: 30px;
+  border-radius: 20px;
+  border: 2px solid #000000a6;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 250px; /* Mais largo para parecer menu */
+  flex-shrink: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Estilo dos itens dentro do menu */
+#parteDaEsquerda div {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* Estilo do calendário já existente, mantido */
+#calendar {
+  flex: 1; /* Ocupa o resto do espaço */
+  padding: 20px;
+  background-color: #ffffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(44, 64, 213, 0.67);
+  font-family: 'Quicksand', sans-serif;
+}
+
+.bt-curso {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #ffffffff;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
+}
+
+/* Nome do mês */
+.fc-toolbar-title {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  color: #0059df;
+  font-weight: bold;
+}
+
+/* Todos os botões (prev, next, hoje) */
+.fc-button,
+.fc-button-primary {
+  background-color: #0059df !important;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 60, 255, 0.47);
+  transition: background-color 0.3s ease;
+}
+
+/* Botões ao passar o mouse */
+.fc-button:hover {
+  background-color: #003bb5 !important;
+}
+/* Força centralização real do botão "Hoje" */
+.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Opcional: botão Hoje com estilo padronizado */
+.fc-button.fc-today-button {
+  background-color: #0059df !important;
+  color: white !important;
+  border-radius: 6px;
+  padding: 6px 12px;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 60, 255, 0.47);
+  font-weight: 500;
+}
+
+
+/* Corrigir tamanho das setas */
+.fc .fc-button .fc-icon {
+  font-size: 1rem;
+}
+
+.stat-item {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
+  padding: 20px;
+  margin: 0 10px;
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #1800ad;
+}
+
 
 .hidden {
   display: none !important;
