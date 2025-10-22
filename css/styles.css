@@ -21,13 +21,15 @@
 
 /* Estilo da parte esquerda como menu lateral */
 #parteDaEsquerda {
-  background-color: #1800ad; /* azul marinho, usa .cor-principal */
+  background-color: #1800ad;
+  /* azul marinho, usa .cor-principal */
   color: white;
   padding: 30px;
   border-radius: 20px;
   border: 2px solid #000000a6;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  width: 250px; /* Mais largo para parecer menu */
+  width: 250px;
+  /* Mais largo para parecer menu */
   flex-shrink: 0;
   font-family: "Poppins", sans-serif;
 }
@@ -40,7 +42,8 @@
 
 /* Estilo do calendário já existente, mantido */
 #calendar {
-  flex: 1; /* Ocupa o resto do espaço */
+  flex: 1;
+  /* Ocupa o resto do espaço */
   padding: 20px;
   background-color: #ffffffff;
   border-radius: 10px;
@@ -88,6 +91,7 @@
 .fc-button:hover {
   background-color: #003bb5 !important;
 }
+
 /* Força centralização real do botão "Hoje" */
 .fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
   width: 100%;
@@ -169,6 +173,7 @@ form {
   background-color: #f9f9f9;
   border-radius: 30px;
   box-shadow: 0 2px 4px rgba(100, 60, 255, 100.47);
+  border: 2px solid #003bb5
 }
 
 legend {

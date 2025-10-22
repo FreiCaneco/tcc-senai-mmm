@@ -18,18 +18,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12">
-          <div class="dashboard-card mb-5">
-            <h5 class="mb-3 legend" style="margin-left: auto; margin-right: auto; text-align: center; font-size: 1.5rem;">Ações Rápidas</h5>
-            <div class="d-flex flex-wrap gap-2 justify-content-center">
-              <a href="./view/criar_professor.php" style="padding: 5px 50px;" class="btn btn-outline-primary">Novo Professor</a>
-              <a href="./view/criar_curso.php" style="padding: 5px 60px;" class="btn btn-outline-primary">Novo Curso</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
         <h3 class="mt-4 legend" style="font-size: 2.0rem; color: #0059df; text-align: center;">Estatísticas</h3>
         <div class="dashboard dashboard-stats mb-4 text-center">
   <div class="stat-item mb-3">
@@ -74,7 +62,7 @@
                 <div class="dashboard-card text-center">
                     <h5>Calendários</h5>
                     <p class="text-muted">Visualizar calendários</p>
-                    <a href="./view/teste_copy.php" class="btn btn-primary">Acessar</a>
+                    <a href="./view/testeCalendario.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
         </div>

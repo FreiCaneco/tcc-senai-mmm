@@ -16,7 +16,6 @@ try {
     $stmtCurso = $pdo->query("SELECT COUNT(*) FROM curso");
     $totalCursos = $stmtCurso->fetchColumn();
 
-    // Pendências (você pode trocar essa lógica depois com base em uma tabela real)
     $totalPendencias = 0;
 
     echo json_encode([
