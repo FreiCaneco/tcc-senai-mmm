@@ -19,7 +19,8 @@
     <div id="container">
       <div id='parteDaEsquerda'>
         <button type="button" class="btn btn-light bt-curso">Curso</button>
-        <button type="button" style="margin-top: 600px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
+        <button type="button" class="btn btn-light bt-curso">Turno</button>
+        <button type="button" style="margin-top: 500px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
       </div>
 
       <div id='calendar'></div>
