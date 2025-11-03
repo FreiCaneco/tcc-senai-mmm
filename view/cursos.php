@@ -54,10 +54,10 @@
           <table class=\"custom-table\">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Nome</th>
                 <th>Turno</th>
                 <th>Horários</th>
+                <th>Gerar Cursos</th>
               </tr>
             </thead>
             <tbody>";
@@ -65,10 +65,15 @@
         // Loop para preencher as linhas
         foreach ($cursos as $curso) {
           echo '<tr>';
-            echo '<td>' . htmlspecialchars($curso['id_curso']) . '</td>';
             echo '<td>' . htmlspecialchars($curso['nome']) . '</td>';
             echo '<td>' . htmlspecialchars($curso['turno']) . '</td>';
             echo '<td>' . htmlspecialchars($curso['horario']) . '</td>';
+            echo '<td>
+                  <a href="calendario_gen.php?id_curso=' . urlencode($curso['id_curso']) . '" 
+                     class="btn btn-outline-primary btn-sm  bt-adicionarDisciplina">
+                     Gerar
+                  </a>
+                </td>';
           echo '</tr>';
         }
 
@@ -80,6 +85,7 @@
       else {
         echo '<div class="alert alert-info text-center mt-4">Nenhum curso criado até o momento.</div>';
       }
+
     ?>
   </div>
 

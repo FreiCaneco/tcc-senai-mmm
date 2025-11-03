@@ -34,4 +34,19 @@ class CursoModel {
       return null;
     }
   }
+
+  public function buscarPorId($id) {
+    try {
+        $sql = "SELECT * FROM curso WHERE id_curso = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erro ao buscar curso: " . $e->getMessage());
+        return null;
+    }
+}
+
+
 }
