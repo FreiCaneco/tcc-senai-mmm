@@ -1,63 +1,73 @@
-.cor-principal {
-  background-color: #1800ad;
+/* ==============================
+   🌐 IMPORTAÇÕES E FONTES
+============================== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+/* ==============================
+   ⚙️ CONFIGURAÇÕES GERAIS
+============================== */
+body {
+  font-family: "Poppins", sans-serif;
 }
 
-.container {
-  padding: 24px;
+h1 {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin: 30px;
+}
+
+.cor-principal {
+  background-color: #1800ad;
 }
 
 .cor-texto {
   color: white;
 }
 
-/* Adicionar: Layout principal em linha (flex) */
+.container {
+  padding: 24px;
+}
+
+/* ==============================
+   🧭 LAYOUT PRINCIPAL
+============================== */
 #container {
   display: flex;
+  flex-direction: row;
   gap: 20px;
   padding: 20px;
   max-width: 1200px;
+  height: 80vh;
   margin: 0 auto;
 }
 
-/* Estilo da parte esquerda como menu lateral */
+/* ==============================
+   📋 MENU LATERAL (PARTE ESQUERDA)
+============================== */
 #parteDaEsquerda {
   background-color: #1800ad;
-  /* azul marinho, usa .cor-principal */
   color: white;
   padding: 30px;
   border-radius: 20px;
   border: 2px solid #000000a6;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   width: 250px;
-  /* Mais largo para parecer menu */
   flex-shrink: 0;
   font-family: "Poppins", sans-serif;
 }
 
-/* Estilo dos itens dentro do menu */
 #parteDaEsquerda div {
   margin-bottom: 20px;
   font-size: 1rem;
 }
 
-/* Estilo do calendário já existente, mantido */
-#calendar {
-  flex: 1;
-  /* Ocupa o resto do espaço */
-  padding: 30px;
-  background-color: #ffffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(44, 64, 213, 0.67);
-  font-family: 'Quicksand', sans-serif;
-}
-
-
+/* Botões dentro do menu lateral */
 .bt-curso {
   display: block;
   width: 100%;
   margin-bottom: 15px;
   padding: 10px;
-  background-color: #ffffffff;
+  background-color: #fff;
   color: black;
   border: none;
   border-radius: 20px;
@@ -67,7 +77,19 @@
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
 }
 
-/* Nome do mês */
+/* ==============================
+   📅 CALENDÁRIO FULLCALENDAR
+============================== */
+#calendar {
+  flex: 1;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(44, 64, 213, 0.67);
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Título (mês e ano) */
 .fc-toolbar-title {
   text-transform: capitalize;
   font-size: 1.5rem;
@@ -75,7 +97,7 @@
   font-weight: bold;
 }
 
-/* Todos os botões (prev, next, hoje) */
+/* Botões principais (Prev, Next, Hoje) */
 .fc-button,
 .fc-button-primary {
   background-color: #0059df !important;
@@ -88,12 +110,12 @@
   transition: background-color 0.3s ease;
 }
 
-/* Botões ao passar o mouse */
+/* Hover dos botões */
 .fc-button:hover {
   background-color: #003bb5 !important;
 }
 
-/* Força centralização real do botão "Hoje" */
+/* Centraliza o botão "Hoje" */
 .fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
   width: 100%;
   display: flex;
@@ -101,7 +123,7 @@
   gap: 10px;
 }
 
-/* Opcional: botão Hoje com estilo padronizado */
+/* Botão "Hoje" padronizado */
 .fc-button.fc-today-button {
   background-color: #0059df !important;
   color: white !important;
@@ -112,10 +134,23 @@
   font-weight: 500;
 }
 
-
-/* Corrigir tamanho das setas */
+/* Ícones de navegação (setas) */
 .fc .fc-button .fc-icon {
   font-size: 1rem;
+}
+
+/* ==============================
+   📊 DASHBOARD E ESTATÍSTICAS
+============================== */
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(100, 60, 255, 0.47);
+  border: 2px solid #003bb5;
 }
 
 .stat-item {
@@ -139,23 +174,9 @@
   color: #1800ad;
 }
 
-
-.hidden {
-  display: none !important;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-
-body {
-  font-family: "Poppins", sans-serif;
-}
-
-h1 {
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  margin: 30px;
-}
-
+/* ==============================
+   🧾 FORMULÁRIOS
+============================== */
 form {
   background-color: #ffffff;
   padding: 30px;
@@ -164,17 +185,6 @@ form {
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
   max-width: 700px;
   margin: auto;
-}
-
-.dashboard {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px rgba(100, 60, 255, 100.47);
-  border: 2px solid #003bb5
 }
 
 legend {
@@ -193,6 +203,9 @@ legend {
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
 }
 
+/* ==============================
+   📋 TABELAS PERSONALIZADAS
+============================== */
 .custom-table-container {
   margin-top: 20px;
   font-family: "Quicksand", Arial, sans-serif;
@@ -212,16 +225,10 @@ legend {
   color: white;
 }
 
-.custom-table th {
-  padding: 10px;
-  text-align: center;
-  font-weight: 600;
-}
-
+.custom-table th,
 .custom-table td {
   padding: 10px;
   text-align: center;
-  border-bottom: 1px solid #e0e0e0;
 }
 
 .custom-table tbody tr:nth-child(even) {
@@ -238,7 +245,9 @@ legend {
   border-bottom: none;
 }
 
-.bt-acessar{  background-color: #0059df !important;
+/* Botão "Acessar" nas tabelas */
+.bt-acessar {
+  background-color: #0059df !important;
   border: none;
   color: white;
   border-radius: 6px;
@@ -248,19 +257,24 @@ legend {
   transition: background-color 0.3s ease;
 }
 
-
-#container {
-  display: flex;
-  flex-direction: row;
-  height: 80vh;
+/* ==============================
+   🎛️ ACORDEÕES
+============================== */
+.accordion-item,
+.accordion-body,
+.accordion-button {
+  background-color: #fff;
+  border-radius: 30px;
+  color: #000;
 }
 
 .accordion-button {
   background-color: #f8f9fa;
-  color: #333;
 }
 
-.accordion-body {
-  background-color: #fff;
-  color: #000;
+/* ==============================
+   🧩 UTILITÁRIOS
+============================== */
+.hidden {
+  display: none !important;
 }
