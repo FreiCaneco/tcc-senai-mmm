@@ -13,26 +13,14 @@
     
 </head>
 <body>
-    <?php include "../view/navbar.php"; 
-
-  require_once '../model/curso_model.php';
-
-  $curso = null;
-  if (isset($_GET['id_curso'])) {
-    $idCurso = intval($_GET['id_curso']);
-    $cursoModel = new CursoModel();
-    $curso = $cursoModel->buscarPorId($idCurso);
-}
-    ?>
-  
+    <?php include "../view/navbar.php" ?>
 
     
     <div id="container">
       <div id='parteDaEsquerda'>
-      <button type="button" class="btn btn-light bt-curso">
-  <?= $curso ? htmlspecialchars($curso['nome']) : 'Curso não encontrado' ?>
-</button>
-        <button type="button" style="margin-top: 600px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
+        <button type="button" class="btn btn-light bt-curso">Curso</button>
+        <button type="button" class="btn btn-light bt-curso">Turno</button>
+        <button type="button" style="margin-top: 500px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
       </div>
 
       <div id='calendar'></div>
