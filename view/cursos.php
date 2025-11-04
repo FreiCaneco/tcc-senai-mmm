@@ -56,8 +56,8 @@
               <tr>
                 <th>Nome</th>
                 <th>Turno</th>
-                <th>Horários</th>
-                <th>Gerar Cursos</th>
+                <th>Dias de aula</th>
+                <th>Calendário</th>
               </tr>
             </thead>
             <tbody>";
@@ -70,8 +70,8 @@
             echo '<td>' . htmlspecialchars($curso['horario']) . '</td>';
             echo '<td>
                   <a href="calendario_gen.php?id_curso=' . urlencode($curso['id_curso']) . '" 
-                     class="btn btn-outline-primary btn-sm  bt-adicionarDisciplina">
-                     Gerar
+                     class="btn btn-outline-primary btn-sm  bt-acessar">
+                     Acessar
                   </a>
                 </td>';
           echo '</tr>';
