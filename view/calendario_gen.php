@@ -35,6 +35,26 @@
       <div id='calendar'></div>
     </div>
 
+    <div class="modal fade" id="eventDetailModal" tabindex="-1" aria-labelledby="eventDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Detalhes do Evento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h6 class="mb-3" id="modalCourseTitle"></h6>
+            <p id="modalEventTime"></p>
+        
+            <h5 class="mt-4">Professores e Disciplinas Associadas:</h5>
+            <ul class="list-group" id="professorList"></ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -62,25 +82,21 @@
             daysOfWeek: [1,3,5],
             startRecur: '2025-11-01',
             endRecur: '2026-11-01',
-            color: '28a745',
+            color: '#28a745',
             extendedProps: {
-              professor: 'Carlos',
-              disciplina: 'Banco de dados'
+              turno: "Manhã",
+              detalhes: [
+                {
+                  professor: 'Carlos',
+                  disciplina: 'Banco de dados',
+                },
+                {
+                  professor: 'Mauricio',
+                  disciplina: 'Bolas',
+                }
+              ]
             }
           },
-          {
-            title: "Tarde",
-            startTime: '13:30:00',
-            endTime: '17:30:00',
-            daysOfWeek: [1,3,5],
-            startRecur: '2025-11-01',
-            endRecur: '2026-11-01',
-            color: '28a745',
-            extendedProps: {
-              professor: 'Carlos',
-              disciplina: 'Banco de dados'
-            }
-          }
         ],
         
 
@@ -99,6 +115,42 @@
             info.el.style.border = '2px solid #0059df';
             info.el.style.borderRadius = '8px';
           }
+        },
+
+        eventClick: function(info) {
+          info.jsEvent.preventDefault();
+          const event = info.event;
+          const extendedProps = event.extendedProps;
+          const listaDetalhes = extendedProps.detalhes;
+
+          if (!listaDetalhes || listaDetalhes.length === 0) {
+            alert(`Nenhum detalhe associado encontrado para: ${event.title}`);
+            return;
+          }
+
+          const professorListEl = document.getElementById('professorList');
+          professorListEl.innerHTML = ''; 
+            
+          // Atualiza o Título principal do Modal
+          document.getElementById('modalTitle').innerText = `Detalhes: ${event.title}`;
+            
+          // Atualiza o Título do Curso/Turno
+          document.getElementById('modalCourseTitle').innerText = `Turno: ${extendedProps.turno || 'Não Definido'}`;
+            
+          // Monta a lista de professores/disciplinas
+          listaDetalhes.forEach(detalhe => {
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+            listItem.innerHTML = `
+              <strong>${detalhe.disciplina}</strong>
+              <br>
+              Professor(a): ${detalhe.professor}`;
+              professorListEl.appendChild(listItem);
+          });
+
+          // 3. Abre o Modal do Bootstrap
+          const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
+          modal.show();
         }
       });
 
