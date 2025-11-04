@@ -44,12 +44,13 @@
 #calendar {
   flex: 1;
   /* Ocupa o resto do espaço */
-  padding: 20px;
+  padding: 30px;
   background-color: #ffffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(44, 64, 213, 0.67);
   font-family: 'Quicksand', sans-serif;
 }
+
 
 .bt-curso {
   display: block;
@@ -235,4 +236,31 @@ legend {
 
 .custom-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+.bt-acessar{  background-color: #0059df !important;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 60, 255, 0.47);
+  transition: background-color 0.3s ease;
+}
+
+
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+}
+
+.accordion-button {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.accordion-body {
+  background-color: #fff;
+  color: #000;
 }
