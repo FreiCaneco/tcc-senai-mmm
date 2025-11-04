@@ -46,7 +46,7 @@
             <h6 class="mb-3" id="modalCourseTitle"></h6>
             <p id="modalEventTime"></p>
         
-            <h5 class="mt-4">Professores e Disciplinas Associadas:</h5>
+            <h5 class="mt-4">Disciplinas e Professores Associadas:</h5>
             <ul class="list-group" id="professorList"></ul>
           </div>
           <div class="modal-footer">
