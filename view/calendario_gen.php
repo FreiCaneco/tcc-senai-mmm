@@ -23,7 +23,6 @@
     }
     ?>
 
-
     <div id="container">
       <div id='parteDaEsquerda'>
         <button type="button" class="btn btn-light bt-curso">

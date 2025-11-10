@@ -1,0 +1,10 @@
+Nome, horario, turno
+
+Na página de geração de calendário, ter uma opção de
+colocar o inicio e fim do curso.
+
+Ordem das disciplinas a serem dispostas.
+
+Apartir disso, fazer uma pesquisa de professores
+disponiveis com o maior nivél possível para cada disci
+plina.
