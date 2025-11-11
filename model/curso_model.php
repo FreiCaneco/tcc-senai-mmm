@@ -46,7 +46,20 @@ class CursoModel {
         error_log("Erro ao buscar curso: " . $e->getMessage());
         return null;
     }
-}
+  }
+// Era pra estar em outro model, "disciplinasCurso" ou algo assim
+  public function criarDisciplinaCurso($curso_id, array $disciplinas_ids) {
+    try {
+      $sql = "INSERT INTO disciplina_curso (id_disciplina, id_curso) VALUES (?, ?)";
+      
+      foreach ($disciplinas_ids as $disciplina_id => $value) {
+        # code...
+      }
+    } catch (\Throwable $th) {
+      //throw $th;
+    }
+  }
+
 
 
 }

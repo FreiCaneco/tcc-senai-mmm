@@ -25,37 +25,39 @@
 
     <div id="container">
       <div id='parteDaEsquerda'>
-        <button type="button" class="btn btn-light bt-curso">
+        <h2 class="titulo-curso">
           <?= $curso ? htmlspecialchars($curso['nome']) : 'Curso não encontrado' ?>
-        </button>
+        </h2>
+
         <button type="button" style="margin-top: 600px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
       </div>
 
       <div id='calendar'></div>
-    </div>
 
-    <div class="modal fade" id="eventDetailModal" tabindex="-1" aria-labelledby="eventDetailModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTitle">Detalhes do Evento</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h6 class="mb-3" id="modalCourseTitle"></h6>
-            <p id="modalEventTime"></p>
-        
-            <h5 class="mt-4">Disciplinas e Professores Associadas:</h5>
-            <ul class="list-group" id="professorList"></ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      <!-- Inicialmente Invisivel -->
+      <div class="modal fade" id="eventDetailModal" tabindex="-1" aria-labelledby="eventDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitle">Detalhes do Evento</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h6 class="mb-3" id="modalCourseTitle"></h6>
+              <p id="modalEventTime"></p>
+              
+              <h5 class="mt-4">Disciplinas e Professores Associadas:</h5>
+              <ul class="list-group" id="professorList"></ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
-  <script>
+    </body>
+    <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
 
