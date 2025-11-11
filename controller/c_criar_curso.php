@@ -8,11 +8,14 @@ try {
 
   $horariosString = implode(',', $horarios);
 
+  $disciplinasIDS = array_filter($_POST['disciplinasIds'] ?? []);
+
   $curso_model = new CursoModel();
   $cursoId = $curso_model->criarCurso($nome, $horariosString, $turno);
+  $curso_model->criarDisciplinaCurso($cursoId,$disciplinasIDS);
 
-  if ($cursoId) {
-    header("Location: ../view/cursos.php?id=$cursoId&status=success");
+  if ($cursoId > 0) {
+    header("Location: ../view/cursos.php?status=success");
   } 
   exit();
   } catch (Exception $e) {

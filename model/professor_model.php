@@ -37,19 +37,19 @@
     }
 
     // Era pra estar em outro model, "disciplinasProfessor" ou algo assim
-    public function salvarDisciplinasProfessor($professorId, array $disciplinaIDs_niveis,) {
-      $sql = "INSERT INTO professor_habilidade (id_disciplina, id_professor, nivel_professor) VALUES (?,?,?)";
+  public function salvarDisciplinasProfessor($professorId, array $disciplinaIDs_niveis,) {
+    $sql = "INSERT INTO professor_habilidade (id_disciplina, id_professor, nivel_professor) VALUES (?,?,?)";
 
-      $stmt = $this->db->prepare($sql);
+    $stmt = $this->db->prepare($sql);
 
-      foreach ($disciplinaIDs_niveis as $disciplinaId => $nivel) {
-        $stmt->execute([
-          $disciplinaId,
-          $professorId,
-          $nivel
-        ]);
-      }
+    foreach ($disciplinaIDs_niveis as $disciplinaId => $nivel) {
+      $stmt->execute([
+        $disciplinaId,
+        $professorId,
+        $nivel
+      ]);
     }
+  }
 
   public function selectTodosProfessores() {
     $sql = "SELECT * FROM professor ORDER BY nome ASC";
