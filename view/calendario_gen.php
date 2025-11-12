@@ -29,12 +29,39 @@
           <?= $curso ? htmlspecialchars($curso['nome']) : 'Curso não encontrado' ?>
         </h2>
 
+        <?php 
+          require_once '../model/disciplina_curso_model.php';
+          require_once '../model/disciplina_model.php';
+          
+          $cursoDisciplinaModel = new DisciplinaCursoModel();
+          $disciplinas_curso = $cursoDisciplinaModel->buscarDisciplinasPorCursoID($idCurso);
+          //Garante Todos IDs a serem procurados pelo disciplina model
+          $idsDisciplinas = array_column($disciplinas_curso,'id_disciplina');
+
+          $disciplinaModel = new DisciplinaModel();
+          $disciplinas = $disciplinaModel->buscarPorListaDeID($idsDisciplinas);
+
+          echo '<ul id="lista-disciplinas-ordenavel" class="list-group">';
+
+          foreach ($disciplinas as $disciplina) {
+            $id = $disciplina['id_disciplina'];
+            $nome = $disciplina['nome'];
+
+            // O atributo 'data-id' é CRUCIAL para rastrear a ordem final no PHP.
+            echo "<li class='list-group-item' data-id='{$id}'>";
+            echo "  <span>{$nome}</span>";
+            echo "</li>";
+          }
+
+          echo '</ul>';
+        ?>
+
         <button type="button" style="margin-top: 600px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
       </div>
 
       <div id='calendar'></div>
 
-      <!-- Inicialmente Invisivel -->
+      <!-- Model Inicialmente Invisivel -->
       <div class="modal fade" id="eventDetailModal" tabindex="-1" aria-labelledby="eventDetailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -56,6 +83,7 @@
         </div>
       </div>
     </div>
+    <!-- Fim do Model -->
     </body>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -157,6 +185,5 @@
 
       calendar.render();
     });
-
   </script>
 </html>

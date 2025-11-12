@@ -2,30 +2,30 @@
 require_once __DIR__ . '/../db/connection.php';
 
 class CursoModel {
-  private $conn;
+  private $db;
 
   public function __construct() {
-    $db = new Database();
-    $this->conn = $db->getConnection();
+    $database = new Database();
+    $this->db = $database->getConnection();
   }
 
   public function criarCurso($nome, $horario, $turno) {
     $sql = "INSERT INTO curso (nome, horario, turno) VALUES (?, ?, ?)";
 
     try {
-        $stmt = $this->conn->prepare($sql); 
-        $stmt->execute([$nome, $horario, $turno]);
-        return $this->conn->lastInsertId();
+      $stmt = $this->db->prepare($sql); 
+      $stmt->execute([$nome, $horario, $turno]);
+      return $this->db->lastInsertId();
     } catch (PDOException $e) {
-        error_log("Um erro surgiu ao inserir um curso: " . $e->getMessage());
-        return 0; // CORREÇÃO: Retornar 0 em caso de falha é mais seguro que false
+      error_log("Um erro surgiu ao inserir um curso: " . $e->getMessage());
+      return 0;
     }
-}
+  }
 
   public function selectTodosCursos() {
     $sql = "SELECT * FROM curso ORDER BY nome ASC";
     try {
-      $stmt = $this->conn->prepare($sql);
+      $stmt = $this->db->prepare($sql);
       $stmt->execute();
       return $stmt->fetchAll();
 
@@ -37,21 +37,21 @@ class CursoModel {
 
   public function buscarPorId($id) {
     try {
-        $sql = "SELECT * FROM curso WHERE id_curso = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+      $sql = "SELECT * FROM curso WHERE id_curso = :id";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        error_log("Erro ao buscar curso: " . $e->getMessage());
-        return null;
+      error_log("Erro ao buscar curso: " . $e->getMessage());
+      return null;
     }
   }
-// Era pra estar em outro model, "disciplinasCurso" ou algo assim
+
   public function criarDisciplinaCurso($curso_id, array $disciplinas_ids) {
     try {
       $sql = "INSERT INTO disciplina_curso (id_disciplina, id_curso) VALUES (?, ?)";
-      $stmt = $this->conn->prepare($sql);
+      $stmt = $this->db->prepare($sql);
 
       foreach ($disciplinas_ids as $disciplina_id) {
         $disciplina_id = (int) $disciplina_id; 
@@ -65,3 +65,4 @@ class CursoModel {
     }
   }
 }
+?>
