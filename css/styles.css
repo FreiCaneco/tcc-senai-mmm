@@ -32,34 +32,31 @@
   /* Mais largo para parecer menu */
   flex-shrink: 0;
   font-family: "Poppins", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
 }
 
-/* Estilo dos itens dentro do menu */
 #parteDaEsquerda div {
   margin-bottom: 20px;
   font-size: 1rem;
 }
 
 .titulo-curso {
-  /* Herda o branco da cor principal do #parteDaEsquerda */
   color: white;
-  /* Estilo de fundo/borda para parecer um "badge" ou destaque, 
-       mas sem a aparência exata de botão */
-  background-color: #3b30c1; /* Um tom um pouco mais claro ou diferente do fundo */
+  background-color: #3b30c1;
   padding: 10px 15px;
   border-radius: 10px;
-  font-size: 1.2rem; /* Levemente maior */
-  font-weight: 600; /* Mais negrito para destaque */
+  font-size: 1.2rem;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 30px; /* Adicionar mais espaço abaixo do título */
-  /* Remove a borda padrão que o botão tinha, se desejar */
+  margin-bottom: 30px;
   border: none;
 }
 
-/* Estilo do calendário já existente, mantido */
 #calendar {
   flex: 1;
-  /* Ocupa o resto do espaço */
   padding: 20px;
   background-color: #ffffffff;
   border-radius: 10px;
@@ -80,6 +77,10 @@
   cursor: pointer;
   text-align: left;
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
+
+  margin-top: auto;
+  align-self: center;
+  text-align: center;
 }
 
 /* Nome do mês */

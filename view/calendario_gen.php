@@ -56,7 +56,7 @@
           echo '</ul>';
         ?>
 
-        <button type="button" style="margin-top: 600px; text-align: center;" class="btn btn-light bt-curso">Gerar </button>
+        <button type="button" style="text-align: center;" class="btn btn-light bt-curso">Gerar </button>
       </div>
 
       <div id='calendar'></div>
