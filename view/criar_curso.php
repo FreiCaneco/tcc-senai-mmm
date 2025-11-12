@@ -92,7 +92,7 @@
 
             foreach ($disciplinas as $disciplina) {
               $id = $disciplina['id_disciplina'];
-              $nome = ucfirst(str_replace('-', ' ', $disciplina['nome']));
+              $disciplinaNome = ucfirst(str_replace('-', ' ', $disciplina['nome']));
 
               echo "
                 <label class='list-group-item d-flex justify-content-between align-items-center'>
