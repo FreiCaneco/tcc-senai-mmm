@@ -97,8 +97,8 @@
               echo "
                 <label class='list-group-item d-flex justify-content-between align-items-center'>
                   <div class='me-3'>
-                    <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' id='checkbox_$id'>
-                    <span>$nome</span>
+                    <input class='form-check-input me-1 disciplina-checkbox' type='checkbox' id='checkbox_$id' name='disciplinasIds[$id]' value='$id'>
+                    <span>$disciplinaNome</span>
                   </div>
                 </label>
               ";

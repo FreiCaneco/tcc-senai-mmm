@@ -54,6 +54,10 @@ h1 {
   width: 250px;
   flex-shrink: 0;
   font-family: "Poppins", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
 }
 
 #parteDaEsquerda div {
@@ -61,7 +65,27 @@ h1 {
   font-size: 1rem;
 }
 
-/* Botões dentro do menu lateral */
+.titulo-curso {
+  color: white;
+  background-color: #3b30c1;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  border: none;
+}
+
+#calendar {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(44, 64, 213, 0.67);
+  font-family: "Quicksand", sans-serif;
+}
+
 .bt-curso {
   display: block;
   width: 100%;
@@ -75,6 +99,10 @@ h1 {
   cursor: pointer;
   text-align: left;
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
+
+  margin-top: auto;
+  align-self: center;
+  text-align: center;
 }
 
 /* ==============================
@@ -134,7 +162,7 @@ h1 {
   font-weight: 500;
 }
 
-/* Ícones de navegação (setas) */
+/* Corrigir tamanho das setas */
 .fc .fc-button .fc-icon {
   font-size: 1rem;
 }
@@ -174,9 +202,22 @@ h1 {
   color: #1800ad;
 }
 
-/* ==============================
-   🧾 FORMULÁRIOS
-============================== */
+.hidden {
+  display: none !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin: 30px;
+}
+
 form {
   background-color: #ffffff;
   padding: 30px;
@@ -185,6 +226,17 @@ form {
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
   max-width: 700px;
   margin: auto;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(100, 60, 255, 100.47);
+  border: 2px solid #003bb5;
 }
 
 legend {
