@@ -1,11 +1,7 @@
-/* ==============================
-   🌐 IMPORTAÇÕES E FONTES
-============================== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
-/* ==============================
-   ⚙️ CONFIGURAÇÕES GERAIS
-============================== */
+/* 
+   ⚙️ CONFIGURAÇÕES GERAIS */
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -28,9 +24,9 @@ h1 {
   padding: 24px;
 }
 
-/* ==============================
-   🧭 LAYOUT PRINCIPAL
-============================== */
+/*
+  LAYOUT PRINCIPAL
+*/
 #container {
   display: flex;
   flex-direction: row;
@@ -41,9 +37,9 @@ h1 {
   margin: 0 auto;
 }
 
-/* ==============================
-   📋 MENU LATERAL (PARTE ESQUERDA)
-============================== */
+/*
+  MENU LATERAL (PARTE ESQUERDA)
+*/
 #parteDaEsquerda {
   background-color: #1800ad;
   color: white;
@@ -105,16 +101,16 @@ h1 {
   text-align: center;
 }
 
-/* ==============================
-   📅 CALENDÁRIO FULLCALENDAR
-============================== */
+/*
+  CALENDÁRIO FULLCALENDAR
+*/
 #calendar {
   flex: 1;
   padding: 30px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(44, 64, 213, 0.67);
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 /* Título (mês e ano) */
@@ -167,9 +163,9 @@ h1 {
   font-size: 1rem;
 }
 
-/* ==============================
-   📊 DASHBOARD E ESTATÍSTICAS
-============================== */
+/* 
+  DASHBOARD E ESTATÍSTICAS
+*/
 .dashboard {
   display: flex;
   justify-content: space-around;
@@ -255,9 +251,9 @@ legend {
   box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
 }
 
-/* ==============================
-   📋 TABELAS PERSONALIZADAS
-============================== */
+/*
+  TABELAS PERSONALIZADAS
+*/
 .custom-table-container {
   margin-top: 20px;
   font-family: "Quicksand", Arial, sans-serif;
@@ -309,9 +305,20 @@ legend {
   transition: background-color 0.3s ease;
 }
 
-/* ==============================
-   🎛️ ACORDEÕES
-============================== */
+#tabela-horario {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#tabela-horario button {
+  /* Remove padding horizontal extra se houver, garantindo que o w-100 funcione melhor */
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/*
+  ACORDEÕES
+*/
 .accordion-item,
 .accordion-body,
 .accordion-button {
@@ -324,9 +331,9 @@ legend {
   background-color: #f8f9fa;
 }
 
-/* ==============================
-   🧩 UTILITÁRIOS
-============================== */
+/* 
+  UTILITÁRIOS
+*/
 .hidden {
   display: none !important;
 }

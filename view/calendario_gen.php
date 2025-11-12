@@ -85,6 +85,7 @@
     </div>
     <!-- Fim do Model -->
     </body>
+    
     <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
