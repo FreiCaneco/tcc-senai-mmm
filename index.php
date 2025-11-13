@@ -14,7 +14,7 @@
 
   <?php
     // Caminho da imagem de fundo — personalize aqui
-    $imagemFundo = "./view/img/fundo_login.g"; 
+    $imagemFundo = "./view/img/fundo_login.png"; 
   ?>
 
   <style>
