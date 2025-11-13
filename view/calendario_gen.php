@@ -15,7 +15,7 @@
 
     require_once '../model/curso_model.php';
 
-    $curso = null;  
+    $curso = null;
     if (isset($_GET['id_curso'])) {
       $idCurso = intval($_GET['id_curso']);
       $cursoModel = new CursoModel();
@@ -24,44 +24,59 @@
     ?>
 
     <div id="container">
+      <form action="../controller/gerar_eventos.php" method="POST" class="form-gen">
       <div id='parteDaEsquerda'>
         <h2 class="titulo-curso">
           <?= $curso ? htmlspecialchars($curso['nome']) : 'Curso não encontrado' ?>
         </h2>
+        <div class="mb-3">
+          <label for="dataInicioCurso" class="form-label">Início do Curso</label>
+          <input type="date"
+            class="form-control"
+            id="dataInicioCurso"
+            name="data_inicio_curso"
+            required>
+        </div>
 
-        <?php 
+        <div class="mb-3">
+          <label for="dataFimCurso" class="form-label">Fim do Curso</label>
+          <input type="date"
+            class="form-control"
+            id="dataFimCurso"
+            name="data_fim_curso"
+            required>
+        </div>
+        <?php
           require_once '../model/disciplina_curso_model.php';
           require_once '../model/disciplina_model.php';
-          
+
           $cursoDisciplinaModel = new DisciplinaCursoModel();
           $disciplinas_curso = $cursoDisciplinaModel->buscarDisciplinasPorCursoID($idCurso);
-          //Garante Todos IDs a serem procurados pelo disciplina model
-          $idsDisciplinas = array_column($disciplinas_curso,'id_disciplina');
+
+          // Garante Todos IDs a serem procurados pelo disciplina model
+          $idsDisciplinas = array_column($disciplinas_curso, 'id_disciplina');
 
           $disciplinaModel = new DisciplinaModel();
           $disciplinas = $disciplinaModel->buscarPorListaDeID($idsDisciplinas);
 
-          echo '<ul id="lista-disciplinas-ordenavel" class="list-group">';
-
-          foreach ($disciplinas as $disciplina) {
-            $id = $disciplina['id_disciplina'];
-            $nome = $disciplina['nome'];
-
-            // O atributo 'data-id' é CRUCIAL para rastrear a ordem final no PHP.
-            echo "<li class='list-group-item' data-id='{$id}'>";
-            echo "  <span>{$nome}</span>";
-            echo "</li>";
-          }
-
-          echo '</ul>';
+          $disciplinas_json = htmlspecialchars(json_encode($disciplinas));
         ?>
 
-        <button type="button" style="text-align: center;" class="btn btn-light bt-curso">Gerar </button>
+        <input type="hidden" name="disciplinas_data" value="<?= $disciplinas_json ?>">
+
+        <button type="button"
+          class="btn btn-primary mt-3 mb-3"
+          data-bs-toggle="modal"
+          data-bs-target="#modalDisciplinas">
+          Visualizar Disciplinas (<?= count($disciplinas) ?>)
+        </button>
+
+        <button type="submit" style="text-align: center;" class="btn btn-light bt-curso">Gerar</button>
       </div>
+  </form>
 
       <div id='calendar'></div>
 
-      <!-- Model Inicialmente Invisivel -->
       <div class="modal fade" id="eventDetailModal" tabindex="-1" aria-labelledby="eventDetailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -72,7 +87,7 @@
             <div class="modal-body">
               <h6 class="mb-3" id="modalCourseTitle"></h6>
               <p id="modalEventTime"></p>
-              
+
               <h5 class="mt-4">Disciplinas e Professores Associadas:</h5>
               <ul class="list-group" id="professorList"></ul>
             </div>
@@ -83,10 +98,48 @@
         </div>
       </div>
     </div>
-    <!-- Fim do Model -->
+    <div class="modal fade" id="modalDisciplinas" tabindex="-1" aria-labelledby="modalDisciplinasLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDisciplinasLabel">
+              Disciplinas do Curso: <?= $curso ? htmlspecialchars($curso['nome']) : 'Curso' ?>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <?php
+              // Verifica se a lista de disciplinas foi preenchida
+              if (!empty($disciplinas)):
+                // Mantendo o ID 'lista-disciplinas-ordenavel' caso você queira reativar a funcionalidade SortableJS
+                echo '<ul id="lista-disciplinas-ordenavel" class="list-group">';
+
+                foreach ($disciplinas as $disciplina) {
+                  $id = $disciplina['id_disciplina'];
+                  // Formata o nome para exibição (Ex: banco-de-dados -> Banco de dados)
+                  $nome = ucfirst(str_replace('-', ' ', $disciplina['nome']));
+
+                  echo "<li class='list-group-item' data-id='{$id}'>";
+                  echo "  <span>{$nome}</span>";
+                  echo "</li>";
+                }
+                echo '</ul>';
+              else:
+                echo '<p class="text-center text-muted">Nenhuma disciplina associada a este curso.</p>';
+              endif;
+            ?>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     </body>
-    
-    <script>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
 
@@ -128,7 +181,7 @@
             }
           },
         ],
-        
+
 
         dayCellDidMount: function(info) {
           const day = info.date.getDate();
@@ -159,14 +212,14 @@
           }
 
           const professorListEl = document.getElementById('professorList');
-          professorListEl.innerHTML = ''; 
-            
+          professorListEl.innerHTML = '';
+
           // Atualiza o Título principal do Modal
           document.getElementById('modalTitle').innerText = `Detalhes: ${event.title}`;
-            
+
           // Atualiza o Título do Curso/Turno
           document.getElementById('modalCourseTitle').innerText = `Turno: ${extendedProps.turno || 'Não Definido'}`;
-            
+
           // Monta a lista de professores/disciplinas
           listaDetalhes.forEach(detalhe => {
             const listItem = document.createElement('li');
@@ -175,7 +228,7 @@
               <strong>${detalhe.disciplina}</strong>
               <br>
               Professor(a): ${detalhe.professor}`;
-              professorListEl.appendChild(listItem);
+            professorListEl.appendChild(listItem);
           });
 
           // 3. Abre o Modal do Bootstrap

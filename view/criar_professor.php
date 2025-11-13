@@ -79,9 +79,7 @@
           </div>
         </div>
 
-        <div class="form-check mt-3 mb-4">
-          <input class="form-check-input" type="checkbox" id="trabalha" name="trabalha" value="1" />
-          <label class="form-check-label" for="trabalha">Trabalha durante a semana</label>
+        <div class="form-check">
 
           <input class="form-check-input ms-3" type="checkbox" id="trabalha_sabado" name="trabalha_sabado" value="1" />
           <label class="form-check-label" for="trabalha_sabado">Trabalha aos sábados</label>

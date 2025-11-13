@@ -10,8 +10,8 @@
     }
 
     public function criarProfessor($nome, $cpf, $telefone, $email, $trabalha_sabado, $turno ) {
-      $sql = "INSERT INTO professor (nome, cpf, telefone, email, trabalha_sabado, turno) 
-      VALUES (?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO professor (nome, cpf, telefone, email, trabalha_sabado, turno, disponivel) 
+      VALUES (?, ?, ?, ?, ?, ?,?)";
 
       try {
         $stmt = $this->db->prepare($sql);
@@ -22,7 +22,8 @@
           $telefone,
           $email,
           $trabalha_sabado,
-          $turno
+          $turno,
+          1
         ]);
         
         if ($resultado) {
@@ -36,7 +37,7 @@
       }
     }
 
-    // Era pra estar em outro model, "disciplinasProfessor" ou algo assim
+  // Era pra estar em outro model, "disciplinasProfessor" ou algo assim
   public function salvarDisciplinasProfessor($professorId, array $disciplinaIDs_niveis,) {
     $sql = "INSERT INTO professor_habilidade (id_disciplina, id_professor, nivel_professor) VALUES (?,?,?)";
 
@@ -51,12 +52,40 @@
     }
   }
 
+  public function selectTodosProfessoresDisciplinasPorId($professorID) {
+    $sql = "SELECT * FROM professor_habilidade WHERE id_professor = ?"; 
+    
+    try {
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$professorID]); 
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    } catch (PDOException $e) {
+        error_log("Erro ao buscar professores: " . $e->getMessage());
+        return null;
+    } 
+}
+
   public function selectTodosProfessores() {
     $sql = "SELECT * FROM professor ORDER BY nome ASC";
     try {
       $stmt = $this->db->prepare($sql);
       $stmt->execute();
       return $stmt->fetchAll();
+      
+    } catch (PDOException $e) {
+        error_log("Erro ao buscar professores: " . $e->getMessage());
+        return null;
+    } 
+  }
+
+  public function selectTodosProfessoresDisponiveis() {
+    $sql = "SELECT * FROM professor WHERE disponivel = 1 ORDER BY nome ASC";
+    try {
+      $stmt = $this->db->prepare($sql);
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
       
     } catch (PDOException $e) {
         error_log("Erro ao buscar professores: " . $e->getMessage());

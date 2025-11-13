@@ -41,5 +41,7 @@ class DisciplinaModel {
         return [];
     }
   }
+
+  
 }
 ?>
