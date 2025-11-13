@@ -8,38 +8,51 @@ class DisciplinaModel {
     $database = new Database();
     $this->db = $database->getConnection();
   }
-  
-  public function buscarTodas(){
-    $sql = "SELECT * FROM disciplina ORDER BY nome ASC";
 
+  public function buscarTodas() {
+    $sql = "SELECT * FROM disciplina ORDER BY nome ASC";
     try {
       $stmt = $this->db->prepare($sql);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
       error_log("Erro ao buscar disciplinas: " . $e->getMessage());
       return null;
     }
   }
 
-  public function buscarPorListaDeID(array $ids){
+  public function buscarPorListaDeID(array $ids) {
     if (empty($ids)) {
-        return [];
+      return [];
     }
-    $placeholders = implode(',', array_fill(0, count($ids), '?'));
 
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
     $sql = "SELECT * FROM disciplina WHERE id_disciplina IN ($placeholders) ORDER BY nome ASC";
-    
+
     try {
       $stmt = $this->db->prepare($sql);
-      $stmt->execute($ids); 
-        
+      $stmt->execute($ids);
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        error_log("Erro ao buscar disciplinas por lista de IDs: " . $e->getMessage());
-        return [];
+      error_log("Erro ao buscar disciplinas por lista de IDs: " . $e->getMessage());
+      return [];
     }
   }
+public function criarDisciplina($nome, $duracao) {
+  $sql = "INSERT INTO disciplina (nome, `duraçao`) VALUES (:nome, :duracao)";
+  
+  try {
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':duracao', $duracao);
+    $stmt->execute();
+
+    return $this->db->lastInsertId();
+  } catch (PDOException $e) {
+    error_log("Erro ao criar disciplina: " . $e->getMessage());
+    return false;
+  }
+}
+
 }
 ?>
