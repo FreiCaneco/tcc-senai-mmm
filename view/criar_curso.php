@@ -4,37 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novo Curso</title>
-  <!-- Bootstrap -->
   <link rel="stylesheet" href="../css/bootstrap.css">
-  <!-- Estilos personalizados -->
   <link rel="stylesheet" href="../css/styles.css">
-  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
-          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- Navbar -->
   <?php include "../view/navbar.php"; ?>
 
   <div class="container mt-4">
     <h1 class="text-center mb-4">Novo Curso</h1>
 
-    <!-- Formulário -->
     <form method="POST" action="../controller/c_criar_curso.php">
       <fieldset>
         <legend>Preencha corretamente</legend>
 
-        <!-- Nome do curso -->
         <div class="mb-4">
           <label for="nome" class="form-label">Nome</label>
           <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required>
         </div>
 
-        <!-- Seleção do turno -->
         <div class="mb-4">
           <label for="turno" class="form-label">Turno</label>
           <select id="turno-select" name="turno" class="form-select" required>
@@ -44,19 +34,14 @@
           </select>
         </div>
 
-        <!-- Tabela de horários -->
         <legend>Tabela de Horários</legend>
         <table id="tabela-horario" class="table table-bordered table-striped text-center align-middle">
           <thead class="table-primary">
-            <tr>
-              <th colspan="7">Turno</th>
-            </tr>
+            <tr><th colspan="7">Turno</th></tr>
           </thead>
           <tbody>
             <tr id="linha-dia">
               <th id="titulo-linha" scope="row">Nenhum</th>
-
-              <!-- Dias da semana -->
               <?php
                 $dias = ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
                 foreach ($dias as $dia) {
@@ -74,26 +59,28 @@
           </tbody>
         </table>
 
-        <!-- Disciplinas -->
         <legend>Disciplinas do Curso</legend>
-
-        <!-- Campo de busca -->
         <div class="mb-4">
           <label for="search-capacitacao" class="form-label">Pesquisar Capacitação</label>
           <input type="text" id="search-capacitacao" class="form-control" placeholder="Digite para filtrar...">
         </div>
 
-        <!-- Lista de disciplinas -->
+        <div class="text-end mb-3">
+           <button 
+            type="button" 
+            class="btn btn-outline-primary bg-white text-primary border-primary shadow-sm px-4 py-2 fw-semibold" data-bs-toggle="modal"  data-bs-target="#modalNovaDisciplina">
+            + Nova Disciplina
+          </button>
+        </div>
+
         <div id="lista-capacitacoes" class="list-group" style="max-height: 250px; overflow-y: auto;">
-          <?php
+          <?php 
             require_once "../model/disciplina_model.php";
             $disciplinaModel = new DisciplinaModel();
             $disciplinas = $disciplinaModel->buscarTodas();
-
             foreach ($disciplinas as $disciplina) {
               $id = $disciplina['id_disciplina'];
               $disciplinaNome = ucfirst(str_replace('-', ' ', $disciplina['nome']));
-
               echo "
                 <label class='list-group-item d-flex justify-content-between align-items-center'>
                   <div class='me-3'>
@@ -106,7 +93,6 @@
           ?>
         </div>
 
-        <!-- Botões de ação -->
         <div class="mt-4 d-flex justify-content-center gap-3">
           <button type="submit" class="btn btn-primary px-5">Salvar</button>
           <button type="reset" class="btn btn-secondary px-5">Cancelar</button>
@@ -115,7 +101,43 @@
     </form>
   </div>
 
-  <!-- Script principal -->
+
+ <!-- MODAL NOVA DISCIPLINA -->
+<div class="modal fade" id="modalNovaDisciplina" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nova Disciplina</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formNovaDisciplina" method="POST" action="../controller/c_criar_disciplina.php">
+          <fieldset>
+            <legend>Preencha corretamente</legend>
+
+            <div class="mb-4">
+              <label for="nome-disciplina" class="form-label">Nome</label>
+              <input type="text" id="nome-disciplina" name="nome" class="form-control" placeholder="Digite o nome da disciplina" required>
+            </div>
+
+            <div class="mb-4">
+              <label for="duracao" class="form-label">Carga Horária (em horas)</label>
+              <input type="number" id="duracao" name="duracao" class="form-control" placeholder="Digite a carga horária" required>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <!-- Envia o form -->
+        <button type="submit" form="formNovaDisciplina" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const botoesDias = document.querySelectorAll('.dia-btn');
@@ -123,33 +145,29 @@
       const tituloLinha = document.getElementById('titulo-linha');
       const searchInput = document.getElementById('search-capacitacao');
       const listItems = document.querySelectorAll('.list-group-item');
-
-      // Atualiza título da linha conforme turno
-      function atualizarTitulo() {
-        tituloLinha.textContent = selectTurno.value;
-      }
-      selectTurno.addEventListener('change', atualizarTitulo);
-      atualizarTitulo();
-
-      // Alterna dias selecionados
+      selectTurno.addEventListener('change', () => tituloLinha.textContent = selectTurno.value);
+      tituloLinha.textContent = selectTurno.value;
       botoesDias.forEach(botao => {
         const inputOculto = botao.nextElementSibling;
         botao.addEventListener('click', () => {
           botao.classList.toggle('btn-primary');
           botao.classList.toggle('btn-outline-primary');
           botao.classList.toggle('selected');
-
           inputOculto.value = botao.classList.contains('selected') ? botao.value : '';
           inputOculto.disabled = !botao.classList.contains('selected');
         });
       });
-
-      // Filtro de disciplinas
       searchInput.addEventListener('keyup', () => {
         const termo = searchInput.value.trim().toLowerCase();
         listItems.forEach(item => {
           const nome = item.querySelector('span').textContent.toLowerCase();
           item.style.display = nome.includes(termo) ? 'flex' : 'none';
+        });
+      });
+      document.querySelectorAll('.professor-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const selectDiv = document.getElementById(`div-select_${checkbox.id.split('_')[2]}`);
+          selectDiv.classList.toggle('hidden', !checkbox.checked);
         });
       });
     });
