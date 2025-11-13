@@ -56,7 +56,6 @@
           <table class=\"custom-table\">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Telefone</th>
@@ -71,7 +70,6 @@
         foreach ($professores as $prof) {
           $trabalha = $prof['trabalha_sabado'] == 1 ? 'Sim' : 'Não';
           echo '<tr>';
-            echo '<td>' . htmlspecialchars($prof['id_professor']) . '</td>';
             echo '<td>' . htmlspecialchars($prof['nome']) . '</td>';
             echo '<td>' . htmlspecialchars($prof['cpf']) . '</td>';
             echo '<td>' . htmlspecialchars($prof['telefone']) . '</td>';
