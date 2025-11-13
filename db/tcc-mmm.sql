@@ -144,6 +144,17 @@ CREATE TABLE IF NOT EXISTS `turma` (
   KEY `id_disciplina` (`id_disciplina`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(120) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL
+);
+
+
 --
 -- Restrições para despejos de tabelas
 --
