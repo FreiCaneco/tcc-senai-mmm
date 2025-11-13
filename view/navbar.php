@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg cor-principal navbar-dark shadow-sm">
   <div class="container-fluid">
     <!-- Logo / Marca -->
-    <a class="navbar-brand d-flex align-items-center" href="../dashboard.php">
+    <a class="navbar-brand d-flex align-items-center" href="../view/dashboard.php">
       <i class="bi bi-building me-2"></i>
       Organização Senai
     </a>
@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link cor-texto d-flex align-items-center" href="../dashboard.php">
+          <a class="nav-link cor-texto d-flex align-items-center" href="../view/dashboard.php">
             <i class="bi bi-house-door-fill me-1"></i> Home
           </a>
         </li>

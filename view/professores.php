@@ -41,6 +41,11 @@
     <div class="container mt-4">
       <legend style="font-size: 3.0rem; text-align: center;">Professores Cadastrados</legend>
 
+
+      <div class='mt-4 d-flex justify-content-center gap-2'>
+      <button class="bt-adicionarDisciplina" onclick="window.location.href='criar_professor.php'">+ Novo Professor</button>
+    </div>
+
       <?php
       require_once '../model/professor_model.php';
 
@@ -88,10 +93,6 @@
         echo '<div class="alert alert-info text-center mt-4">Nenhum professor cadastrado até o momento.</div>';
       }
       ?>
-    </div>
-
-    <div class='mt-4 d-flex justify-content-center gap-2'>
-      <button class="bt-adicionarDisciplina" onclick="window.location.href='criar_professor.php'">+ Novo Professor</button>
     </div>
 
   </body>

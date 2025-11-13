@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organização Senai</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/styles.css">
   </head>
   <body>
-    <?php include './view/navbar.php'; ?>
+    <?php include './navbar.php'; ?>
 
     <div class="container mt-4">
       <div class="row">
@@ -41,28 +41,28 @@
                 <div class="dashboard-card text-center">
                     <h5>Professores</h5>
                     <p class="text-muted">Gerenciar professores do sistema</p>
-                    <a href="./view/professores.php" class="btn btn-primary">Acessar</a>
+                    <a href="./professores.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">
                 <div class="dashboard-card text-center">
                     <h5>Cursos</h5>
                     <p class="text-muted">Gerenciar cursos e horários</p>
-                    <a href="./view/cursos.php" class="btn btn-primary">Acessar</a>
+                    <a href="./cursos.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">
                 <div class="dashboard-card text-center">
                     <h5>Pendências</h5>
                     <p class="text-muted">Visualizar tarefas pendentes</p>
-                    <a href="./view/pendencias.php" class="btn btn-primary">Acessar</a>
+                    <a href="./pendencias.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4">
                 <div class="dashboard-card text-center">
                     <h5>Calendários</h5>
                     <p class="text-muted">Visualizar calendários</p>
-                    <a href="./view/calendario_geral.php" class="btn btn-primary">Acessar</a>
+                    <a href="./calendario_geral.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
 
     <script>
   document.addEventListener("DOMContentLoaded", function () {
-    fetch('controller/contadores.php') // ajuste o caminho se necessário
+    fetch('../controller/contadores.php') // ajuste o caminho se necessário
       .then(response => response.json())
       .then(data => {
         if (data.error) {
