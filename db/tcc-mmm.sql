@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `email` varchar(255) NOT NULL,
   `trabalha_sabado` tinyint(1) NOT NULL,
   `turno` enum('manha','tarde','noite','manha-tarde','manha-noite','tarde-noite') NOT NULL,
+  `disponivel` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_professor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
