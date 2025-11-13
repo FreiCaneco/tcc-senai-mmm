@@ -1,96 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organização Senai</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
-  <body>
-    <?php include './view/navbar.php'; ?>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistema Escolar</title>
 
-    <div class="container mt-4">
-      <div class="row">
-        <div class="col-12">
-          <h1>Dashboard do Sistema</h1>
-          <p class="text-center text-muted">Bem-vindo ao sistema de organização do SENAI</p>
-        </div>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #ffffffff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 2px solid #000000a6;
+      box-shadow: 0 5px 15px rgba(0, 60, 255, 0.47);
+    }
+    .login-card h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: #0d6efd;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h3>Login do Sistema</h3>
+
+    <?php if (isset($_GET['erro'])): ?>
+      <div class="alert alert-danger text-center">Usuário ou senha incorretos!</div>
+    <?php endif; ?>
+
+    <form action="../controller/c_login.php" method="POST">
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
       </div>
 
-        <h3 class="mt-4 legend" style="font-size: 2.0rem; color: #0059df; text-align: center;">Estatísticas</h3>
-        <div class="dashboard dashboard-stats mb-4 text-center">
-  <div class="stat-item mb-3">
-    <div class="stat-label">Professores</div>
-    <div class="stat-value" id="contador-professores">...</div>
+      <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </div>
+    </form>
+
+    <p class="text-center mt-3 text-muted" style="font-size: 0.9rem;">
+      © <?php echo date('Y'); ?> - Sistema Escolar
+    </p>
   </div>
-  <div class="stat-item mb-3">
-    <div class="stat-label">Cursos</div>
-    <div class="stat-value" id="contador-cursos">...</div>
-  </div>
-  <div class="stat-item mb-3">
-    <div class="stat-label">Pendências</div>
-    <div class="stat-value" id="contador-pendencias">...</div>
-  </div>
-</div>
-
-
-        <h3 class="mt-4 legend" style="font-size: 2.0rem; color: #0059df; text-align: center;">Gerenciadores</h3>
-        <div class="row mt-4 dashboard">
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="dashboard-card text-center">
-                    <h5>Professores</h5>
-                    <p class="text-muted">Gerenciar professores do sistema</p>
-                    <a href="./view/professores.php" class="btn btn-primary">Acessar</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="dashboard-card text-center">
-                    <h5>Cursos</h5>
-                    <p class="text-muted">Gerenciar cursos e horários</p>
-                    <a href="./view/cursos.php" class="btn btn-primary">Acessar</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="dashboard-card text-center">
-                    <h5>Pendências</h5>
-                    <p class="text-muted">Visualizar tarefas pendentes</p>
-                    <a href="./view/pendencias.php" class="btn btn-primary">Acessar</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="dashboard-card text-center">
-                    <h5>Calendários</h5>
-                    <p class="text-muted">Visualizar calendários</p>
-                    <a href="./view/testeCalendario.php" class="btn btn-primary">Acessar</a>
-                </div>
-            </div>
-        </div>
-
-
-     
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
-
-    <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch('controller/contadores.php') // ajuste o caminho se necessário
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          alert("Erro ao buscar contadores: " + data.error);
-        } else {
-          document.getElementById('contador-professores').textContent = data.professores;
-          document.getElementById('contador-cursos').textContent = data.cursos;
-          document.getElementById('contador-pendencias').textContent = data.pendencias;
-        }
-      })
-      .catch(error => {
-        alert("Erro na requisição: " + error);
-      });
-  });
-</script>
-
-  </body>
+</body>
 </html>
