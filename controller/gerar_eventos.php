@@ -15,7 +15,7 @@
       $professoresFiltrados[] = [
         'id_professor' => $professor['id_professor'],
         'nome' => $professor['nome'],
-        'disciplinas' => $professorModel->selectTodosProfessoresDisciplinasPorId(5)
+        'disciplinas' => $professorModel->selectTodosProfessoresDisciplinasPorId($professor['id_professor'])
       ];
     }
 
